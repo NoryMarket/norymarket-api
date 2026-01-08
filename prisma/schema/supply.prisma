@@ -1,0 +1,42 @@
+model Supply {
+    @@schema("supply")
+
+    id String @id @default(uuid())
+    supplyTypeId String
+    supplyType SupplyType @relation(fields: [supplyTypeId], references: [id])
+    supplyTypeSizeId String
+    supplyTypeSize Size @relation(fields: [supplyTypeSizeId], references: [id])
+    supplyTypeColorId String
+    supplyTypeColor Color @relation(fields: [supplyTypeColorId], references: [id])
+    quantity Int
+
+    description String?
+
+    batchPrice Float
+    buyCurrencyRateId String
+    buyCurrencyRate CurrencyRate @relation(fields: [buyCurrencyRateId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    waste SupplyWaste[]
+}
+
+model SupplyWaste {
+    @@schema("supply")
+
+    id String @id @default(uuid())
+    supplyId String
+    supply Supply @relation(fields: [supplyId], references: [id])
+    quantity Int
+
+    name String
+    description String
+
+    //todo add author when User is added
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+}

@@ -1,0 +1,30 @@
+model CurrencyType {
+    @@schema("currency")
+
+    id String @id @default(uuid())
+    name String
+    shortName String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    rates CurrencyRate[]
+    allowedSellableProducts SellableProductAllowedCurrencies[]
+}
+
+model CurrencyRate {
+    @@schema("currency")
+
+    id String @id @default(uuid())
+    currencyTypeId String
+    currencyType CurrencyType @relation(fields: [currencyTypeId], references: [id])
+    factor Float
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    supplies Supply[]
+    sellabeProducts SellableProduct[]
+}

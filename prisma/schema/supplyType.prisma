@@ -1,0 +1,86 @@
+model SupplyType {
+    id String @id @default(uuid())
+    name String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    quantityUnitId String
+    quantityUnit QuantityUnit @relation(fields: [quantityUnitId], references: [id])
+
+    colors SupplyTypeColors[]
+    sizes SupplyTypeSizes[]
+    recipes BuildOfMaterialsRecipe[]
+    supplies Supply[]
+
+    @@schema("supplyType")
+}
+
+model QuantityUnit {
+    id String @id @default(uuid())
+    name String
+    description String?
+    shortName String
+
+    supplyTypes SupplyType[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    @@schema("supplyType")
+}
+
+model Color {
+    id String @id @default(uuid())
+    name String
+    color String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    supplyTypes SupplyTypeColors[]
+    supplies Supply[]
+    orders OrderProducts[]
+
+    @@schema("supplyType")
+}
+
+model Size {
+    id String @id @default(uuid())
+    name String
+    shortName String
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    supplyTypes SupplyTypeSizes[]
+    supplies Supply[]
+    orders OrderProducts[]
+
+    @@schema("supplyType")
+}
+
+model SupplyTypeColors {
+    supplyTypeId String
+    supplyType SupplyType @relation(fields: [supplyTypeId], references: [id])    
+    colorId String
+    color Color @relation(fields: [colorId], references: [id])
+
+    @@id([colorId,supplyTypeId])
+    @@schema("supplyType")
+}
+
+model SupplyTypeSizes {
+    supplyTypeId String
+    supplyType SupplyType @relation(fields: [supplyTypeId], references: [id])
+    sizeId String
+    size Size @relation(fields: [sizeId], references: [id])
+
+    @@id([sizeId,supplyTypeId])
+    @@schema("supplyType")
+    
+}

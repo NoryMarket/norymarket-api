@@ -1,0 +1,100 @@
+model SellableProduct {
+    @@schema("order")
+
+    id String @id @default(uuid())
+    buildOfMaterialsId String
+    buildOfMaterials BuildOfMaterials @relation(fields: [buildOfMaterialsId], references: [id])
+    priority Int @default(0)
+
+    sellPrice Float
+    currencyRateId String
+    currencyRate CurrencyRate @relation(fields: [currencyRateId], references: [id])    
+
+    startDate DateTime?
+    expireDate DateTime?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    allowedCurrencies SellableProductAllowedCurrencies[]
+    orders OrderProducts[]
+
+}
+
+model SellableProductAllowedCurrencies {
+    @@schema("order")
+
+    sellableProductId String
+    sellableProduct SellableProduct @relation(fields: [sellableProductId], references: [id])
+
+    currencyId String
+    currency CurrencyType @relation(fields: [currencyId], references: [id])
+
+    @@id(fields: [currencyId,sellableProductId])
+}
+
+model Order {
+    @@schema("order")
+
+    id String @id @default(uuid())
+
+    to String
+    description String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    products OrderProducts[]
+}
+
+model OrderProducts {
+    @@schema("order")
+
+    id String @default(uuid()) @unique
+    orderId String
+    order Order @relation(fields: [orderId], references: [id])
+    sellableProductId String
+    sellableProduct SellableProduct @relation(fields: [sellableProductId], references: [id])
+    sellableProductSizeId String
+    sellableProductSize Size @relation(fields: [sellableProductSizeId], references: [id])
+    sellableProductColorId String
+    sellableProductColor Color @relation(fields: [sellableProductColorId], references: [id])
+    quantity Int
+
+    @@id(fields: [sellableProductId,sellableProductSizeId,orderId,sellableProductColorId])
+
+    productionRuns ProductionRun[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+}
+
+model ProductionRun {
+    @@schema("order")
+
+    id String @id @default(uuid())
+    orderProductsId String
+    orderProducts OrderProducts @relation(fields: [orderProductsId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+}
+
+model ProductionRunWaste {
+    @@schema("order")
+
+    id String @id @default(uuid())
+    quantity Float
+    name String
+    description String
+
+    //todo add author when User is added
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+}

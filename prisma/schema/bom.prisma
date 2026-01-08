@@ -1,0 +1,27 @@
+
+model BuildOfMaterials {
+    @@schema("bom")
+    id String @id @default(uuid())
+    name String
+    description String?
+    shortName String
+    
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt()
+    deletedAt DateTime?
+
+    recipes BuildOfMaterialsRecipe[]
+    sellableProducts SellableProduct[]
+}
+
+model BuildOfMaterialsRecipe {
+    @@schema("bom")    
+    buildOfMaterialsId String
+    buildOfMaterial BuildOfMaterials @relation(fields: [buildOfMaterialsId], references: [id])
+    supplyTypeId String
+    supplyType SupplyType @relation(fields: [supplyTypeId], references: [id])
+    supplyTypeQuantity Float
+
+    @@id(fields: [buildOfMaterialsId,supplyTypeId])
+
+}
