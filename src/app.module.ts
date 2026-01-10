@@ -4,6 +4,7 @@ import { configuration } from "./configuration";
 import { SupabaseModule } from "./modules/supabase/supabase.module";
 import { APP_GUARD } from "@nestjs/core";
 import { SupabaseAuthGuard } from "./modules/auth/guards/supabase.guard";
+import { AuthModule } from "./modules/auth/auth.module";
 
 @Module({
   imports: [
@@ -11,6 +12,7 @@ import { SupabaseAuthGuard } from "./modules/auth/guards/supabase.guard";
       isGlobal: true,
       load: [configuration],
     }),
+    AuthModule,
     SupabaseModule,
   ],
   providers: [
