@@ -3,14 +3,19 @@ import { RoleDTO } from "./types";
 export const ROOT_PERMISSION = "root";
 
 export enum Permissions {
-  EDIT_USER = "users",
-  SUPPLY_TYPE = "supply-type",
-  SUPPLY = "supply",
-  BOM = "bom",
-  ORDERS = "orders",
   DASHBOARD = "dashboard",
+  ORDERS = "orders",
+  BOM = "bom",
+  PRODUCTION = "production",
+  SUPPLY = "supply",
+  SUPPLY_TYPE = "supply-type",
+  WASTE = "waste",
+  PRODUCTS = "products",
+
   ENUMS = "enums",
-  CURRENCY_EXCHANGE = "currency-exchange",
+  CURRENCY = "currency",
+
+  EDIT_USER = "users",
 }
 
 export const allPermissions = Object.values(Permissions);
