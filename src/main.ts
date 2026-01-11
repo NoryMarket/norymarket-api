@@ -7,7 +7,11 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: ["http://localhost:9000", "https://www.norymarket.org"],
+    origin: [
+      "http://localhost:9000",
+      "https://www.norymarket.org",
+      "https://www.api.norymarket.org",
+    ],
   });
 
   app.useGlobalPipes(new ValidationPipe());
