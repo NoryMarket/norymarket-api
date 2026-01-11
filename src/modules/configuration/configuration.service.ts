@@ -9,6 +9,7 @@ import {
   CreateCurrencyExchangeDTO,
   CurrencyExchangeDTO,
 } from "./types/currencyExchange";
+import { ColorDTO, CreateColorDTO, UpdateColorDTO } from "./types/color";
 
 @Injectable()
 export class ConfigurationService {
@@ -99,6 +100,46 @@ export class ConfigurationService {
 
   async deleteCurrencyExchanges(ids: string[]) {
     await this.prisma.currencyRate.updateMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+      data: { deletedAt: new Date() },
+    });
+
+    return ids;
+  }
+
+  async createColor({ color, name }: CreateColorDTO) {
+    const data = await this.prisma.color.create({
+      data: { color, name },
+    });
+
+    return new ColorDTO(data);
+  }
+
+  async getColors() {
+    const data = await this.prisma.color.findMany({
+      where: {
+        deletedAt: null,
+      },
+    });
+
+    return data?.map((color) => new ColorDTO(color)) ?? [];
+  }
+
+  async updateColor(id: string, { color, name }: UpdateColorDTO) {
+    const data = await this.prisma.color.update({
+      where: { id },
+      data: { color, name },
+    });
+
+    return new ColorDTO(data);
+  }
+
+  async deleteColors(ids: string[]) {
+    await this.prisma.color.updateMany({
       where: {
         id: {
           in: ids,
