@@ -13,11 +13,13 @@ export enum Permissions {
   CURRENCY_EXCHANGE = "currency-exchange",
 }
 
+export const allPermissions = Object.values(Permissions);
+
 export const roles: RoleDTO[] = [
   {
     id: "root",
     name: "Root",
-    permissions: [ROOT_PERMISSION],
+    permissions: allPermissions,
   },
   {
     id: "manager",

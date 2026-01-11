@@ -19,7 +19,7 @@ import {
   UpdateUserDTO,
   UserDTO,
 } from "./types";
-import { Permissions, roles } from "./constants";
+import { allPermissions, roles } from "./constants";
 
 @Controller("auth")
 export class AuthController {
@@ -69,7 +69,7 @@ export class AuthController {
   @ApiOkResponse({ type: AuthorizationMetaDTO })
   getAuthorizationMeta(): AuthorizationMetaDTO {
     const meta = new AuthorizationMetaDTO();
-    meta.permissions = Object.values(Permissions);
+    meta.permissions = allPermissions;
     meta.roles = roles;
     return meta;
   }

@@ -2,7 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { User } from "@supabase/supabase-js";
 import moment from "moment";
 import { Permissions, ROOT_PERMISSION } from "./constants";
-import { IsArray, IsEmail, IsEnum, IsUUID } from "class-validator";
+import { IsArray, IsEmail, IsUUID } from "class-validator";
 
 export class UserDTO {
   @ApiProperty({ type: "string" })
