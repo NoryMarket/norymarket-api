@@ -21,7 +21,6 @@ import {
   CurrencyExchangeDTO,
   DeleteCurrencyExchangesDTO,
 } from "./types/currencyExchange";
-import { Public } from "../auth/decorators/public";
 
 @Controller("configuration")
 export class ConfigurationController {
@@ -57,14 +56,12 @@ export class ConfigurationController {
 
   @ApiOkResponse({ type: CurrencyExchangeDTO, isArray: true })
   @Get("currencyTypes/exchanges")
-  @Public()
   async getCurrencyExchanges() {
     return await this.configurationService.getCurrencyExchanges();
   }
 
   @ApiOkResponse({ type: CurrencyExchangeDTO, isArray: true })
   @Get("currencyTypes/exchanges/:currencyTypeId")
-  @Public()
   async getCurrencyTypeExchangeHistory(
     @Param("currencyTypeId", ParseUUIDPipe) id: string,
   ) {
@@ -73,12 +70,10 @@ export class ConfigurationController {
 
   @ApiOkResponse({ type: CurrencyExchangeDTO })
   @Post("currencyTypes/exchanges")
-  @Public()
   async createCurrencyExchange(@Body() data: CreateCurrencyExchangeDTO) {
     return await this.configurationService.createCurrencyExchange(data);
   }
 
-  @Public()
   @Delete("currencyTypes/exchanges")
   @ApiOkResponse({ type: "string", isArray: true })
   async deleteCurrencyExchanges(@Body() { ids }: DeleteCurrencyExchangesDTO) {
