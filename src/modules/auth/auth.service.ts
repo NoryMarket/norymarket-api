@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { SupabaseService } from "../supabase/supabase.service";
-import { CreateUserDTO, UserDTO } from "./types";
+import { CreateUserDTO, UpdateUserDTO, UserDTO } from "./types";
 
 @Injectable()
 export class AuthService {
@@ -29,10 +29,18 @@ export class AuthService {
     return new UserDTO(data.user);
   }
 
-  async deleteUser(userId: string) {
-    const { error } = await this.supabase.admin.auth.admin.deleteUser(userId);
+  async deleteUsers(...users: string[]) {
+    const deletedUsers: string[] = [];
 
-    if (error) throw new InternalServerErrorException();
+    for (const userId of users) {
+      const { error } = await this.supabase.admin.auth.admin.deleteUser(userId);
+
+      if (error) throw new InternalServerErrorException();
+
+      deletedUsers.push(userId);
+    }
+
+    return deletedUsers;
   }
 
   async setUserActiveStatus(userId: string, active: boolean) {
@@ -44,6 +52,20 @@ export class AuthService {
     );
 
     if (error) throw new InternalServerErrorException();
+
+    return new UserDTO(data.user);
+  }
+
+  async updateUser(userId: string, { email, role }: UpdateUserDTO) {
+    const { data, error } = await this.supabase.admin.auth.admin.updateUserById(
+      userId,
+      {
+        email,
+        role,
+      },
+    );
+
+    if (error || !data) throw new InternalServerErrorException(error);
 
     return new UserDTO(data.user);
   }

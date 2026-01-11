@@ -2,6 +2,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { User } from "@supabase/supabase-js";
 import moment from "moment";
 import { Permissions, ROOT_PERMISSION } from "./constants";
+import { IsArray, IsEmail, IsEnum, IsUUID } from "class-validator";
 
 export class UserDTO {
   @ApiProperty({ type: "string" })
@@ -34,8 +35,18 @@ export class UserDTO {
   }
 }
 
+export class UpdateUserDTO {
+  @ApiProperty({ type: "string" })
+  @IsEmail()
+  email: User["email"];
+
+  @ApiProperty({ type: "string" })
+  role: string;
+}
+
 export class CreateUserDTO {
   @ApiProperty({ type: "string" })
+  @IsEmail()
   email: User["email"];
 
   @ApiProperty({ type: "string" })
@@ -62,4 +73,10 @@ export class AuthorizationMetaDTO {
 
   @ApiProperty({ type: RoleDTO, isArray: true })
   roles: RoleDTO[];
+}
+
+export class DeleteUserDTO {
+  @IsArray()
+  @IsUUID("4", { each: true })
+  users: string[];
 }

@@ -12,7 +12,13 @@ import {
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { ApiOkResponse } from "@nestjs/swagger";
-import { AuthorizationMetaDTO, CreateUserDTO, UserDTO } from "./types";
+import {
+  AuthorizationMetaDTO,
+  CreateUserDTO,
+  DeleteUserDTO,
+  UpdateUserDTO,
+  UserDTO,
+} from "./types";
 import { Permissions, roles } from "./constants";
 
 @Controller("auth")
@@ -35,9 +41,19 @@ export class AuthController {
     return await this.authService.createUser(body);
   }
 
-  @Delete("user/:userId")
-  async deleteUser(@Param("userId", ParseUUIDPipe) userId: string) {
-    return await this.authService.deleteUser(userId);
+  @Patch("user/:userId")
+  @ApiOkResponse({ type: UserDTO })
+  async updateUser(
+    @Param("userId", ParseUUIDPipe) userId: string,
+    @Body() body: UpdateUserDTO,
+  ) {
+    return await this.authService.updateUser(userId, { ...body });
+  }
+
+  @Delete("users")
+  @ApiOkResponse({ type: "string", isArray: true })
+  async deleteUser(@Body() { users }: DeleteUserDTO) {
+    return await this.authService.deleteUsers(...users);
   }
 
   @Patch("user/status/:userId/:status")
