@@ -5,6 +5,8 @@ import { SupabaseModule } from "./modules/supabase/supabase.module";
 import { APP_GUARD } from "@nestjs/core";
 import { SupabaseAuthGuard } from "./modules/auth/guards/supabase.guard";
 import { AuthModule } from "./modules/auth/auth.module";
+import { PrismaModule } from "./modules/prisma/prisma.module";
+import { ConfigurationModule } from "./modules/configuration/configuration.module";
 
 @Module({
   imports: [
@@ -14,6 +16,8 @@ import { AuthModule } from "./modules/auth/auth.module";
     }),
     AuthModule,
     SupabaseModule,
+    PrismaModule,
+    ConfigurationModule,
   ],
   providers: [
     {

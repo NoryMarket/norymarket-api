@@ -1,6 +1,7 @@
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { SupabaseService } from "../supabase/supabase.service";
 import { CreateUserDTO, UpdateUserDTO, UserDTO } from "./types";
+import { User } from "@supabase/supabase-js";
 
 @Injectable()
 export class AuthService {
@@ -10,7 +11,7 @@ export class AuthService {
     const { data, error } = await this.supabase.admin.auth.admin.listUsers();
 
     const users = data
-      ? data.users.map((user) => new UserDTO(user))
+      ? data.users.map((user: User) => new UserDTO(user))
       : undefined;
 
     return { users, error };

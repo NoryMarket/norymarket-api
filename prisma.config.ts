@@ -2,19 +2,11 @@
 // npm install --save-dev prisma dotenv
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
+import { configuration } from "./src/configuration";
 
-const DATABASE_URL_ENV_NAME = "DATABASE_POOLER_URL";
-const DATABASE_PASSWORD_ENV_NAME = "DATABASE_PASSWORD";
-
-const rawDatabaseUrl = process.env[DATABASE_URL_ENV_NAME];
-const rawDatabasePassword = process.env[DATABASE_PASSWORD_ENV_NAME];
-
-const databasePasswordExpression = `$\{${DATABASE_PASSWORD_ENV_NAME}}`;
-
-const databaseUrl =
-  !!rawDatabasePassword && rawDatabaseUrl?.includes(databasePasswordExpression)
-    ? rawDatabaseUrl.replace(databasePasswordExpression, rawDatabasePassword)
-    : rawDatabaseUrl;
+const {
+  database: { url },
+} = configuration();
 
 export default defineConfig({
   schema: "prisma/schema/",
@@ -22,6 +14,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: databaseUrl,
+    url,
   },
 });
