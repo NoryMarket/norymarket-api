@@ -1,32 +1,30 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsHexColor, IsString, IsUUID, Length } from "class-validator";
-import { Color } from "src/generated/prisma/client";
+import { IsArray, IsString, IsUUID, Length } from "class-validator";
+import { Size } from "src/generated/prisma/client";
 
-export class CreateColorDTO {
+export class CreateSizeDTO {
   @IsString()
   @Length(3)
   @ApiProperty({ type: "string" })
   name: string;
 
   @IsString()
-  @IsHexColor()
   @ApiProperty({ type: "string" })
-  color: string;
+  shortName: string;
 }
 
-export class UpdateColorDTO {
+export class UpdateSizeDTO {
   @IsString()
   @Length(3)
   @ApiProperty({ type: "string" })
   name?: string;
 
   @IsString()
-  @IsHexColor()
   @ApiProperty({ type: "string" })
-  color?: string;
+  shortName?: string;
 }
 
-export class ColorDTO {
+export class SizeDTO {
   @ApiProperty({ type: "string" })
   id: string;
 
@@ -34,16 +32,16 @@ export class ColorDTO {
   name: string;
 
   @ApiProperty({ type: "string" })
-  color: string;
+  shortName: string;
 
-  constructor({ color, id, name }: Color) {
+  constructor({ id, shortName, name }: Size) {
     this.id = id;
-    this.color = color;
+    this.shortName = shortName;
     this.name = name;
   }
 }
 
-export class DeleteColorDTO {
+export class DeleteSizeDTO {
   @IsArray()
   @IsString({ each: true })
   @IsUUID("4", { each: true })

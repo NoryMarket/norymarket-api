@@ -27,6 +27,12 @@ import {
   DeleteColorDTO,
   UpdateColorDTO,
 } from "./types/color";
+import {
+  CreateSizeDTO,
+  DeleteSizeDTO,
+  SizeDTO,
+  UpdateSizeDTO,
+} from "./types/sizes";
 
 @Controller("configuration")
 export class ConfigurationController {
@@ -111,5 +117,34 @@ export class ConfigurationController {
   @Delete("colors")
   async deleteColors(@Body() { ids }: DeleteColorDTO) {
     return await this.configurationService.deleteColors(ids);
+  }
+
+  //Sizes
+
+  @ApiOkResponse({ type: SizeDTO, isArray: true })
+  @Get("sizes")
+  async getSizes() {
+    return await this.configurationService.getSizes();
+  }
+
+  @ApiOkResponse({ type: SizeDTO })
+  @Post("size")
+  async createSize(@Body() data: CreateSizeDTO) {
+    return await this.configurationService.createSize(data);
+  }
+
+  @ApiOkResponse({ type: SizeDTO })
+  @Patch("size/:sizeId")
+  async updateSize(
+    @Body() data: UpdateSizeDTO,
+    @Param("sizeId", ParseUUIDPipe) id: string,
+  ) {
+    return await this.configurationService.updateSize(id, data);
+  }
+
+  @ApiOkResponse({ type: "string", isArray: true })
+  @Delete("sizes")
+  async deleteSizes(@Body() { ids }: DeleteSizeDTO) {
+    return await this.configurationService.deleteSizes(ids);
   }
 }
