@@ -5,6 +5,10 @@ import {
   CurrencyTypeDTO,
   UpdateCurrencyTypeDTO,
 } from "./types/currencyType";
+import {
+  CreateCurrencyExchangeDTO,
+  CurrencyExchangeDTO,
+} from "./types/currencyExchange";
 
 @Injectable()
 export class ConfigurationService {
@@ -51,5 +55,58 @@ export class ConfigurationService {
     if (!softDeleted) throw new Error("404");
 
     return softDeleted?.id;
+  }
+
+  async createCurrencyExchange({
+    currencyTypeId,
+    factor,
+  }: CreateCurrencyExchangeDTO) {
+    const data = await this.prisma.currencyRate.create({
+      data: {
+        factor,
+        currencyTypeId,
+      },
+    });
+
+    return new CurrencyExchangeDTO(data);
+  }
+
+  async getCurrencyExchanges() {
+    const data = await this.prisma.currencyRate.findMany({
+      distinct: "currencyTypeId",
+      where: { deletedAt: null },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return data?.map((exchange) => new CurrencyExchangeDTO(exchange)) ?? [];
+  }
+
+  async getCurrencyExchangeHistory(currencyTypeId: string) {
+    const data = await this.prisma.currencyRate.findMany({
+      where: {
+        currencyTypeId,
+        deletedAt: null,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return data?.map((exchange) => new CurrencyExchangeDTO(exchange)) ?? [];
+  }
+
+  async deleteCurrencyExchanges(ids: string[]) {
+    await this.prisma.currencyRate.updateMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+      data: { deletedAt: new Date() },
+    });
+
+    return ids;
   }
 }
