@@ -386,6 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   BuildOfMaterials: 'BuildOfMaterials',
   BuildOfMaterialsRecipe: 'BuildOfMaterialsRecipe',
+  AppConfiguration: 'AppConfiguration',
   CurrencyType: 'CurrencyType',
   CurrencyRate: 'CurrencyRate',
   SellableProduct: 'SellableProduct',
@@ -415,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "buildOfMaterials" | "buildOfMaterialsRecipe" | "currencyType" | "currencyRate" | "sellableProduct" | "sellableProductAllowedCurrencies" | "order" | "orderProducts" | "productionRun" | "productionRunWaste" | "supply" | "supplyWaste" | "supplyType" | "quantityUnit" | "color" | "size"
+    modelProps: "buildOfMaterials" | "buildOfMaterialsRecipe" | "appConfiguration" | "currencyType" | "currencyRate" | "sellableProduct" | "sellableProductAllowedCurrencies" | "order" | "orderProducts" | "productionRun" | "productionRunWaste" | "supply" | "supplyWaste" | "supplyType" | "quantityUnit" | "color" | "size"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -564,6 +565,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.BuildOfMaterialsRecipeCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BuildOfMaterialsRecipeCountAggregateOutputType> | number
+        }
+      }
+    }
+    AppConfiguration: {
+      payload: Prisma.$AppConfigurationPayload<ExtArgs>
+      fields: Prisma.AppConfigurationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AppConfigurationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AppConfigurationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>
+        }
+        findFirst: {
+          args: Prisma.AppConfigurationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AppConfigurationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>
+        }
+        findMany: {
+          args: Prisma.AppConfigurationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>[]
+        }
+        create: {
+          args: Prisma.AppConfigurationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>
+        }
+        createMany: {
+          args: Prisma.AppConfigurationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AppConfigurationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>[]
+        }
+        delete: {
+          args: Prisma.AppConfigurationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>
+        }
+        update: {
+          args: Prisma.AppConfigurationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>
+        }
+        deleteMany: {
+          args: Prisma.AppConfigurationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AppConfigurationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AppConfigurationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>[]
+        }
+        upsert: {
+          args: Prisma.AppConfigurationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppConfigurationPayload>
+        }
+        aggregate: {
+          args: Prisma.AppConfigurationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAppConfiguration>
+        }
+        groupBy: {
+          args: Prisma.AppConfigurationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppConfigurationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AppConfigurationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppConfigurationCountAggregateOutputType> | number
         }
       }
     }
@@ -1664,6 +1739,15 @@ export const BuildOfMaterialsRecipeScalarFieldEnum = {
 export type BuildOfMaterialsRecipeScalarFieldEnum = (typeof BuildOfMaterialsRecipeScalarFieldEnum)[keyof typeof BuildOfMaterialsRecipeScalarFieldEnum]
 
 
+export const AppConfigurationScalarFieldEnum = {
+  key: 'key',
+  value: 'value',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AppConfigurationScalarFieldEnum = (typeof AppConfigurationScalarFieldEnum)[keyof typeof AppConfigurationScalarFieldEnum]
+
+
 export const CurrencyTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1854,6 +1938,13 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -1868,6 +1959,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1915,6 +2015,20 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -2035,6 +2149,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   buildOfMaterials?: Prisma.BuildOfMaterialsOmit
   buildOfMaterialsRecipe?: Prisma.BuildOfMaterialsRecipeOmit
+  appConfiguration?: Prisma.AppConfigurationOmit
   currencyType?: Prisma.CurrencyTypeOmit
   currencyRate?: Prisma.CurrencyRateOmit
   sellableProduct?: Prisma.SellableProductOmit

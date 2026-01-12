@@ -10,6 +10,7 @@
  */
 export type * from './models/BuildOfMaterials.js'
 export type * from './models/BuildOfMaterialsRecipe.js'
+export type * from './models/AppConfiguration.js'
 export type * from './models/CurrencyType.js'
 export type * from './models/CurrencyRate.js'
 export type * from './models/SellableProduct.js'

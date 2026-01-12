@@ -28,6 +28,11 @@ export type BuildOfMaterials = Prisma.BuildOfMaterialsModel
  */
 export type BuildOfMaterialsRecipe = Prisma.BuildOfMaterialsRecipeModel
 /**
+ * Model AppConfiguration
+ * 
+ */
+export type AppConfiguration = Prisma.AppConfigurationModel
+/**
  * Model CurrencyType
  * 
  */

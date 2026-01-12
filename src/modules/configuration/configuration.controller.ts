@@ -7,6 +7,7 @@ import {
   ParseUUIDPipe,
   Patch,
   Post,
+  Put,
 } from "@nestjs/common";
 import { ConfigurationService } from "./configuration.service";
 import {
@@ -39,6 +40,11 @@ import {
   UpdateQuantityUnitDto,
 } from "./types/quantityUnit";
 import { MultiDeleteEntityDTO } from "../types/common.dto";
+import {
+  AppConfigurationDto,
+  UpdateAppConfigurationDto,
+} from "./types/appConfiguration";
+import { Public } from "../auth/decorators/public";
 
 @Controller("configuration")
 export class ConfigurationController {
@@ -181,5 +187,18 @@ export class ConfigurationController {
   @Delete("quantityUnits")
   async deleteQuantityUnits(@Body() { ids }: MultiDeleteEntityDTO) {
     return await this.configurationService.deleteQuantityUnits(ids);
+  }
+
+  @ApiOkResponse({ type: AppConfigurationDto })
+  @Get("appConfiguration")
+  @Public()
+  async getAppConfiguration() {
+    return await this.configurationService.getAppConfig();
+  }
+
+  @Put("appConfiguration")
+  @Public()
+  async setAppConfiguration(@Body() data: UpdateAppConfigurationDto) {
+    return await this.configurationService.updateAppConfig(data);
   }
 }

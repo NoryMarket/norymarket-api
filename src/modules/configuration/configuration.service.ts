@@ -16,6 +16,13 @@ import {
   QuantityUnitDto,
   UpdateQuantityUnitDto,
 } from "./types/quantityUnit";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { AppConfigKey, appConfigKeys, AppConfiguration } from "./constants";
+import {
+  AppConfigurationDto,
+  UpdateAppConfigurationDto,
+  ValueOfAppConfigKey,
+} from "./types/appConfiguration";
 
 @Injectable()
 export class ConfigurationService {
@@ -254,5 +261,83 @@ export class ConfigurationService {
     });
 
     return ids;
+  }
+
+  async getAppConfig() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    const data = await this.prisma.appConfiguration.findMany({
+      where: {
+        key: { in: appConfigKeys as string[] },
+      },
+    });
+
+    const valuesMap: Partial<Record<AppConfigKey, unknown>> =
+      Object.fromEntries(
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        data.map(({ key, value }) => [key, value] as [AppConfigKey, unknown]),
+      );
+
+    const appConfig = new AppConfigurationDto();
+
+    for (const key of appConfigKeys) {
+      switch (key) {
+        case AppConfigKey.DEFAULT_CURRENCY:
+          {
+            let value = valuesMap[key];
+
+            if (!value) {
+              const firstCurrency = await this.prisma.currencyType.findFirst();
+
+              if (firstCurrency) value = firstCurrency.id;
+            }
+
+            appConfig[AppConfigKey.DEFAULT_CURRENCY] =
+              value as ValueOfAppConfigKey<AppConfigKey>;
+          }
+          break;
+      }
+    }
+
+    return appConfig;
+  }
+
+  async updateAppConfig(data: UpdateAppConfigurationDto) {
+    for (const key in data) {
+      switch (key) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
+        case AppConfigKey.DEFAULT_CURRENCY:
+          {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+            const currentValue = await this.prisma.appConfiguration.findFirst({
+              where: { key },
+            });
+
+            if (currentValue) {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+              await this.prisma.appConfiguration.update({
+                where: {
+                  key,
+                },
+                data: {
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  value: data[key] as any,
+                },
+              });
+            } else {
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+              await this.prisma.appConfiguration.create({
+                data: {
+                  key,
+                  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                  value: data[key] as any,
+                },
+              });
+            }
+          }
+          break;
+      }
+    }
+
+    return await this.getAppConfig();
   }
 }
