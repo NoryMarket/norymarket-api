@@ -1,52 +1,96 @@
 import { Injectable } from "@nestjs/common";
-// import { CreateSupplyTypeDto } from "./dto/supplyType";
-// import { UpdateSupplyTypeDto } from "./dto/update-supply_type.dto";
+import {
+  CreateSupplyTypeDto,
+  SupplyTypeDto,
+  UpdateSupplyTypeDto,
+} from "./dto/supplyType";
+
 import { PrismaService } from "../prisma/prisma.service";
 
 @Injectable()
 export class SupplyTypeService {
   constructor(private prisma: PrismaService) {}
 
-  // async create({ colors, sizes, name, quantityUnitId }: CreateSupplyTypeDto) {
-  //   const colors = await this.prisma.color.findMany({
-  //     where: {
-  //       id: { in: colorsIds },
-  //     },
-  //   });
+  async create({ colors, sizes, name, quantityUnitId }: CreateSupplyTypeDto) {
+    const data = await this.prisma.supplyType.create({
+      data: {
+        name,
+        quantityUnitId,
+        colors: {
+          connect: colors.map((id) => ({ id })),
+        },
+        sizes: { connect: sizes.map((id) => ({ id })) },
+      },
+      include: {
+        sizes: {
+          select: {
+            id: true,
+          },
+        },
+        colors: {
+          select: { id: true },
+        },
+      },
+    });
 
-  //   const sizes = await this.prisma.size.findMany({
-  //     where: {
-  //       id: { in: sizesIds },
-  //     },
-  //   });
+    return new SupplyTypeDto(data);
+  }
 
-  //   const data = await this.prisma.supplyType.create({
-  //     data: {
-  //       name,
-  //       quantityUnitId,
-  //       colors: {
-  //         connect: colors,
-  //       },
-  //       sizes: { connect: sizes },
-  //     },
-  //   });
+  async findAll() {
+    const data = await this.prisma.supplyType.findMany({
+      where: { deletedAt: null },
+      include: {
+        sizes: {
+          select: {
+            id: true,
+          },
+        },
+        colors: {
+          select: { id: true },
+        },
+      },
+    });
 
-  //   return "This action adds a new supplyType";
-  // }
+    return data.map((supplyType) => new SupplyTypeDto(supplyType));
+  }
 
-  // findAll() {
-  //   return `This action returns all supplyType`;
-  // }
+  async update(
+    id: string,
+    { colors, name, quantityUnitId, sizes }: UpdateSupplyTypeDto,
+  ) {
+    const data = await this.prisma.supplyType.update({
+      where: { id },
+      data: {
+        name,
+        quantityUnitId,
+        colors: {
+          set: colors?.map((id) => ({ id })) ?? [],
+        },
+        sizes: { set: sizes?.map((id) => ({ id })) ?? [] },
+      },
+      include: {
+        sizes: {
+          select: {
+            id: true,
+          },
+        },
+        colors: {
+          select: { id: true },
+        },
+      },
+    });
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} supplyType`;
-  // }
+    return new SupplyTypeDto(data);
+  }
 
-  // update(id: number, updateSupplyTypeDto: UpdateSupplyTypeDto) {
-  //   return `This action updates a #${id} supplyType`;
-  // }
+  async remove(ids: string[]) {
+    await this.prisma.supplyType.updateMany({
+      where: { id: { in: ids } },
+      data: {
+        deletedAt: new Date(),
+      },
+    });
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} supplyType`;
-  // }
+    return ids;
+  }
 }

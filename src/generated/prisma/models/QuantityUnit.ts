@@ -29,6 +29,7 @@ export type QuantityUnitMinAggregateOutputType = {
   name: string | null
   description: string | null
   shortName: string | null
+  allowDecimals: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -39,6 +40,7 @@ export type QuantityUnitMaxAggregateOutputType = {
   name: string | null
   description: string | null
   shortName: string | null
+  allowDecimals: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -49,6 +51,7 @@ export type QuantityUnitCountAggregateOutputType = {
   name: number
   description: number
   shortName: number
+  allowDecimals: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -61,6 +64,7 @@ export type QuantityUnitMinAggregateInputType = {
   name?: true
   description?: true
   shortName?: true
+  allowDecimals?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -71,6 +75,7 @@ export type QuantityUnitMaxAggregateInputType = {
   name?: true
   description?: true
   shortName?: true
+  allowDecimals?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -81,6 +86,7 @@ export type QuantityUnitCountAggregateInputType = {
   name?: true
   description?: true
   shortName?: true
+  allowDecimals?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -164,6 +170,7 @@ export type QuantityUnitGroupByOutputType = {
   name: string
   description: string | null
   shortName: string
+  allowDecimals: boolean
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -195,6 +202,7 @@ export type QuantityUnitWhereInput = {
   name?: Prisma.StringFilter<"QuantityUnit"> | string
   description?: Prisma.StringNullableFilter<"QuantityUnit"> | string | null
   shortName?: Prisma.StringFilter<"QuantityUnit"> | string
+  allowDecimals?: Prisma.BoolFilter<"QuantityUnit"> | boolean
   createdAt?: Prisma.DateTimeFilter<"QuantityUnit"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuantityUnit"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuantityUnit"> | Date | string | null
@@ -206,6 +214,7 @@ export type QuantityUnitOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  allowDecimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -220,6 +229,7 @@ export type QuantityUnitWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"QuantityUnit"> | string
   description?: Prisma.StringNullableFilter<"QuantityUnit"> | string | null
   shortName?: Prisma.StringFilter<"QuantityUnit"> | string
+  allowDecimals?: Prisma.BoolFilter<"QuantityUnit"> | boolean
   createdAt?: Prisma.DateTimeFilter<"QuantityUnit"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuantityUnit"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"QuantityUnit"> | Date | string | null
@@ -231,6 +241,7 @@ export type QuantityUnitOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  allowDecimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -247,6 +258,7 @@ export type QuantityUnitScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"QuantityUnit"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"QuantityUnit"> | string | null
   shortName?: Prisma.StringWithAggregatesFilter<"QuantityUnit"> | string
+  allowDecimals?: Prisma.BoolWithAggregatesFilter<"QuantityUnit"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"QuantityUnit"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"QuantityUnit"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"QuantityUnit"> | Date | string | null
@@ -257,6 +269,7 @@ export type QuantityUnitCreateInput = {
   name: string
   description?: string | null
   shortName: string
+  allowDecimals?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -268,6 +281,7 @@ export type QuantityUnitUncheckedCreateInput = {
   name: string
   description?: string | null
   shortName: string
+  allowDecimals?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -279,6 +293,7 @@ export type QuantityUnitUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  allowDecimals?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -290,6 +305,7 @@ export type QuantityUnitUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  allowDecimals?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -301,6 +317,7 @@ export type QuantityUnitCreateManyInput = {
   name: string
   description?: string | null
   shortName: string
+  allowDecimals?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -311,6 +328,7 @@ export type QuantityUnitUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  allowDecimals?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -321,6 +339,7 @@ export type QuantityUnitUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  allowDecimals?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -336,6 +355,7 @@ export type QuantityUnitCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  allowDecimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -346,6 +366,7 @@ export type QuantityUnitMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  allowDecimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -356,6 +377,7 @@ export type QuantityUnitMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  allowDecimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -375,11 +397,16 @@ export type QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuantityUnitUpdateToOneWithWhereWithoutSupplyTypesInput, Prisma.QuantityUnitUpdateWithoutSupplyTypesInput>, Prisma.QuantityUnitUncheckedUpdateWithoutSupplyTypesInput>
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type QuantityUnitCreateWithoutSupplyTypesInput = {
   id?: string
   name: string
   description?: string | null
   shortName: string
+  allowDecimals?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -390,6 +417,7 @@ export type QuantityUnitUncheckedCreateWithoutSupplyTypesInput = {
   name: string
   description?: string | null
   shortName: string
+  allowDecimals?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -416,6 +444,7 @@ export type QuantityUnitUpdateWithoutSupplyTypesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  allowDecimals?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -426,6 +455,7 @@ export type QuantityUnitUncheckedUpdateWithoutSupplyTypesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  allowDecimals?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -467,6 +497,7 @@ export type QuantityUnitSelect<ExtArgs extends runtime.Types.Extensions.Internal
   name?: boolean
   description?: boolean
   shortName?: boolean
+  allowDecimals?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -479,6 +510,7 @@ export type QuantityUnitSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   name?: boolean
   description?: boolean
   shortName?: boolean
+  allowDecimals?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -489,6 +521,7 @@ export type QuantityUnitSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   name?: boolean
   description?: boolean
   shortName?: boolean
+  allowDecimals?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -499,12 +532,13 @@ export type QuantityUnitSelectScalar = {
   name?: boolean
   description?: boolean
   shortName?: boolean
+  allowDecimals?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type QuantityUnitOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "shortName" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["quantityUnit"]>
+export type QuantityUnitOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "shortName" | "allowDecimals" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["quantityUnit"]>
 export type QuantityUnitInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   supplyTypes?: boolean | Prisma.QuantityUnit$supplyTypesArgs<ExtArgs>
   _count?: boolean | Prisma.QuantityUnitCountOutputTypeDefaultArgs<ExtArgs>
@@ -522,6 +556,7 @@ export type $QuantityUnitPayload<ExtArgs extends runtime.Types.Extensions.Intern
     name: string
     description: string | null
     shortName: string
+    allowDecimals: boolean
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -953,6 +988,7 @@ export interface QuantityUnitFieldRefs {
   readonly name: Prisma.FieldRef<"QuantityUnit", 'String'>
   readonly description: Prisma.FieldRef<"QuantityUnit", 'String'>
   readonly shortName: Prisma.FieldRef<"QuantityUnit", 'String'>
+  readonly allowDecimals: Prisma.FieldRef<"QuantityUnit", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"QuantityUnit", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"QuantityUnit", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"QuantityUnit", 'DateTime'>

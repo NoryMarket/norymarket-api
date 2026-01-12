@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsArray, IsString, IsUUID } from "class-validator";
-import { SupplyType } from "src/generated/prisma/client";
+import { Color, Size, SupplyType } from "src/generated/prisma/client";
 
 export class CreateSupplyTypeDto {
   @IsString()
@@ -70,11 +70,18 @@ export class SupplyTypeDto {
     quantityUnitId,
     colors,
     sizes,
-  }: SupplyType & { sizes?: string[]; colors?: string[] }) {
+  }: SupplyType & {
+    sizes?: (Pick<Size, "id"> | Size["id"])[];
+    colors?: (Pick<Color, "id"> | Color["id"])[];
+  }) {
     this.id = id;
     this.name = name;
     this.quantityUnitId = quantityUnitId;
-    this.sizes = sizes ?? [];
-    this.colors = colors ?? [];
+    this.sizes =
+      sizes?.map((size) => (typeof size === "string" ? size : size.id)) ?? [];
+
+    this.colors =
+      colors?.map((color) => (typeof color === "string" ? color : color.id)) ??
+      [];
   }
 }

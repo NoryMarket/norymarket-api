@@ -7,6 +7,7 @@ import { SupabaseAuthGuard } from "./modules/auth/guards/supabase.guard";
 import { AuthModule } from "./modules/auth/auth.module";
 import { PrismaModule } from "./modules/prisma/prisma.module";
 import { ConfigurationModule } from "./modules/configuration/configuration.module";
+import { SupplyTypeModule } from "./modules/supply_type/supply_type.module";
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ConfigurationModule } from "./modules/configuration/configuration.modul
     SupabaseModule,
     PrismaModule,
     ConfigurationModule,
+    SupplyTypeModule,
   ],
   providers: [
     {

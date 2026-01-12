@@ -11,6 +11,11 @@ import {
 } from "./types/currencyExchange";
 import { ColorDTO, CreateColorDTO, UpdateColorDTO } from "./types/color";
 import { CreateSizeDTO, SizeDTO, UpdateSizeDTO } from "./types/sizes";
+import {
+  CreateQuantityUnitDto,
+  QuantityUnitDto,
+  UpdateQuantityUnitDto,
+} from "./types/quantityUnit";
 
 @Injectable()
 export class ConfigurationService {
@@ -190,6 +195,56 @@ export class ConfigurationService {
 
   async deleteSizes(ids: string[]) {
     await this.prisma.size.updateMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+      data: { deletedAt: new Date() },
+    });
+
+    return ids;
+  }
+
+  //QuantityUnit
+
+  async createQuantityUnit({
+    shortName,
+    name,
+    allowDecimals,
+    description,
+  }: CreateQuantityUnitDto) {
+    const data = await this.prisma.quantityUnit.create({
+      data: { shortName, name, allowDecimals, description },
+    });
+
+    return new QuantityUnitDto(data);
+  }
+
+  async getQuantityUnits() {
+    const data = await this.prisma.quantityUnit.findMany({
+      where: {
+        deletedAt: null,
+      },
+    });
+
+    return data?.map((unit) => new QuantityUnitDto(unit)) ?? [];
+  }
+
+  async updateQuantityUnit(
+    id: string,
+    { shortName, name, allowDecimals, description }: UpdateQuantityUnitDto,
+  ) {
+    const data = await this.prisma.quantityUnit.update({
+      where: { id },
+      data: { shortName, name, allowDecimals, description },
+    });
+
+    return new QuantityUnitDto(data);
+  }
+
+  async deleteQuantityUnits(ids: string[]) {
+    await this.prisma.quantityUnit.updateMany({
       where: {
         id: {
           in: ids,

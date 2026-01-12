@@ -33,6 +33,12 @@ import {
   SizeDTO,
   UpdateSizeDTO,
 } from "./types/sizes";
+import {
+  CreateQuantityUnitDto,
+  QuantityUnitDto,
+  UpdateQuantityUnitDto,
+} from "./types/quantityUnit";
+import { MultiDeleteEntityDTO } from "../types/common.dto";
 
 @Controller("configuration")
 export class ConfigurationController {
@@ -146,5 +152,34 @@ export class ConfigurationController {
   @Delete("sizes")
   async deleteSizes(@Body() { ids }: DeleteSizeDTO) {
     return await this.configurationService.deleteSizes(ids);
+  }
+
+  //QuantityUnits
+
+  @ApiOkResponse({ type: QuantityUnitDto, isArray: true })
+  @Get("quantityUnits")
+  async getQuantityUnits() {
+    return await this.configurationService.getQuantityUnits();
+  }
+
+  @ApiOkResponse({ type: QuantityUnitDto })
+  @Post("quantityUnit")
+  async createQuantityUnit(@Body() data: CreateQuantityUnitDto) {
+    return await this.configurationService.createQuantityUnit(data);
+  }
+
+  @ApiOkResponse({ type: QuantityUnitDto })
+  @Patch("quantityUnit/:quantityUnitId")
+  async updateQuantityUnit(
+    @Body() data: UpdateQuantityUnitDto,
+    @Param("quantityUnitId", ParseUUIDPipe) id: string,
+  ) {
+    return await this.configurationService.updateQuantityUnit(id, data);
+  }
+
+  @ApiOkResponse({ type: "string", isArray: true })
+  @Delete("quantityUnits")
+  async deleteQuantityUnits(@Body() { ids }: MultiDeleteEntityDTO) {
+    return await this.configurationService.deleteQuantityUnits(ids);
   }
 }

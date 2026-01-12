@@ -22,6 +22,7 @@ model QuantityUnit {
     name String
     description String?
     shortName String
+    allowDecimals Boolean @default(true)
 
     supplyTypes SupplyType[]
 

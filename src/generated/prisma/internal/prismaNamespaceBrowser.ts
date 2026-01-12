@@ -256,6 +256,7 @@ export const QuantityUnitScalarFieldEnum = {
   name: 'name',
   description: 'description',
   shortName: 'shortName',
+  allowDecimals: 'allowDecimals',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
