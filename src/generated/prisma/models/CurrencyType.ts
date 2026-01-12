@@ -20,14 +20,26 @@ export type CurrencyTypeModel = runtime.Types.Result.DefaultSelection<Prisma.$Cu
 
 export type AggregateCurrencyType = {
   _count: CurrencyTypeCountAggregateOutputType | null
+  _avg: CurrencyTypeAvgAggregateOutputType | null
+  _sum: CurrencyTypeSumAggregateOutputType | null
   _min: CurrencyTypeMinAggregateOutputType | null
   _max: CurrencyTypeMaxAggregateOutputType | null
+}
+
+export type CurrencyTypeAvgAggregateOutputType = {
+  decimals: number | null
+}
+
+export type CurrencyTypeSumAggregateOutputType = {
+  decimals: number | null
 }
 
 export type CurrencyTypeMinAggregateOutputType = {
   id: string | null
   name: string | null
   shortName: string | null
+  symbol: string | null
+  decimals: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -37,6 +49,8 @@ export type CurrencyTypeMaxAggregateOutputType = {
   id: string | null
   name: string | null
   shortName: string | null
+  symbol: string | null
+  decimals: number | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -46,6 +60,8 @@ export type CurrencyTypeCountAggregateOutputType = {
   id: number
   name: number
   shortName: number
+  symbol: number
+  decimals: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -53,10 +69,20 @@ export type CurrencyTypeCountAggregateOutputType = {
 }
 
 
+export type CurrencyTypeAvgAggregateInputType = {
+  decimals?: true
+}
+
+export type CurrencyTypeSumAggregateInputType = {
+  decimals?: true
+}
+
 export type CurrencyTypeMinAggregateInputType = {
   id?: true
   name?: true
   shortName?: true
+  symbol?: true
+  decimals?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -66,6 +92,8 @@ export type CurrencyTypeMaxAggregateInputType = {
   id?: true
   name?: true
   shortName?: true
+  symbol?: true
+  decimals?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -75,6 +103,8 @@ export type CurrencyTypeCountAggregateInputType = {
   id?: true
   name?: true
   shortName?: true
+  symbol?: true
+  decimals?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -119,6 +149,18 @@ export type CurrencyTypeAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CurrencyTypeAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CurrencyTypeSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CurrencyTypeMinAggregateInputType
@@ -149,6 +191,8 @@ export type CurrencyTypeGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: CurrencyTypeCountAggregateInputType | true
+  _avg?: CurrencyTypeAvgAggregateInputType
+  _sum?: CurrencyTypeSumAggregateInputType
   _min?: CurrencyTypeMinAggregateInputType
   _max?: CurrencyTypeMaxAggregateInputType
 }
@@ -157,10 +201,14 @@ export type CurrencyTypeGroupByOutputType = {
   id: string
   name: string
   shortName: string
+  symbol: string
+  decimals: number
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
   _count: CurrencyTypeCountAggregateOutputType | null
+  _avg: CurrencyTypeAvgAggregateOutputType | null
+  _sum: CurrencyTypeSumAggregateOutputType | null
   _min: CurrencyTypeMinAggregateOutputType | null
   _max: CurrencyTypeMaxAggregateOutputType | null
 }
@@ -187,6 +235,8 @@ export type CurrencyTypeWhereInput = {
   id?: Prisma.StringFilter<"CurrencyType"> | string
   name?: Prisma.StringFilter<"CurrencyType"> | string
   shortName?: Prisma.StringFilter<"CurrencyType"> | string
+  symbol?: Prisma.StringFilter<"CurrencyType"> | string
+  decimals?: Prisma.IntFilter<"CurrencyType"> | number
   createdAt?: Prisma.DateTimeFilter<"CurrencyType"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CurrencyType"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"CurrencyType"> | Date | string | null
@@ -198,6 +248,8 @@ export type CurrencyTypeOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  symbol?: Prisma.SortOrder
+  decimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -212,6 +264,8 @@ export type CurrencyTypeWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CurrencyTypeWhereInput | Prisma.CurrencyTypeWhereInput[]
   name?: Prisma.StringFilter<"CurrencyType"> | string
   shortName?: Prisma.StringFilter<"CurrencyType"> | string
+  symbol?: Prisma.StringFilter<"CurrencyType"> | string
+  decimals?: Prisma.IntFilter<"CurrencyType"> | number
   createdAt?: Prisma.DateTimeFilter<"CurrencyType"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CurrencyType"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"CurrencyType"> | Date | string | null
@@ -223,12 +277,16 @@ export type CurrencyTypeOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  symbol?: Prisma.SortOrder
+  decimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CurrencyTypeCountOrderByAggregateInput
+  _avg?: Prisma.CurrencyTypeAvgOrderByAggregateInput
   _max?: Prisma.CurrencyTypeMaxOrderByAggregateInput
   _min?: Prisma.CurrencyTypeMinOrderByAggregateInput
+  _sum?: Prisma.CurrencyTypeSumOrderByAggregateInput
 }
 
 export type CurrencyTypeScalarWhereWithAggregatesInput = {
@@ -238,6 +296,8 @@ export type CurrencyTypeScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"CurrencyType"> | string
   name?: Prisma.StringWithAggregatesFilter<"CurrencyType"> | string
   shortName?: Prisma.StringWithAggregatesFilter<"CurrencyType"> | string
+  symbol?: Prisma.StringWithAggregatesFilter<"CurrencyType"> | string
+  decimals?: Prisma.IntWithAggregatesFilter<"CurrencyType"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CurrencyType"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CurrencyType"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CurrencyType"> | Date | string | null
@@ -247,6 +307,8 @@ export type CurrencyTypeCreateInput = {
   id?: string
   name: string
   shortName: string
+  symbol?: string
+  decimals?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -258,6 +320,8 @@ export type CurrencyTypeUncheckedCreateInput = {
   id?: string
   name: string
   shortName: string
+  symbol?: string
+  decimals?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -269,6 +333,8 @@ export type CurrencyTypeUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  decimals?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -280,6 +346,8 @@ export type CurrencyTypeUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  decimals?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -291,6 +359,8 @@ export type CurrencyTypeCreateManyInput = {
   id?: string
   name: string
   shortName: string
+  symbol?: string
+  decimals?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -300,6 +370,8 @@ export type CurrencyTypeUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  decimals?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -309,6 +381,8 @@ export type CurrencyTypeUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  decimals?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -318,15 +392,23 @@ export type CurrencyTypeCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  symbol?: Prisma.SortOrder
+  decimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
+}
+
+export type CurrencyTypeAvgOrderByAggregateInput = {
+  decimals?: Prisma.SortOrder
 }
 
 export type CurrencyTypeMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  symbol?: Prisma.SortOrder
+  decimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -336,14 +418,28 @@ export type CurrencyTypeMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   shortName?: Prisma.SortOrder
+  symbol?: Prisma.SortOrder
+  decimals?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
 }
 
+export type CurrencyTypeSumOrderByAggregateInput = {
+  decimals?: Prisma.SortOrder
+}
+
 export type CurrencyTypeScalarRelationFilter = {
   is?: Prisma.CurrencyTypeWhereInput
   isNot?: Prisma.CurrencyTypeWhereInput
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type CurrencyTypeCreateNestedOneWithoutRatesInput = {
@@ -378,6 +474,8 @@ export type CurrencyTypeCreateWithoutRatesInput = {
   id?: string
   name: string
   shortName: string
+  symbol?: string
+  decimals?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -388,6 +486,8 @@ export type CurrencyTypeUncheckedCreateWithoutRatesInput = {
   id?: string
   name: string
   shortName: string
+  symbol?: string
+  decimals?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -414,6 +514,8 @@ export type CurrencyTypeUpdateWithoutRatesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  decimals?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -424,6 +526,8 @@ export type CurrencyTypeUncheckedUpdateWithoutRatesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  decimals?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -434,6 +538,8 @@ export type CurrencyTypeCreateWithoutAllowedSellableProductsInput = {
   id?: string
   name: string
   shortName: string
+  symbol?: string
+  decimals?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -444,6 +550,8 @@ export type CurrencyTypeUncheckedCreateWithoutAllowedSellableProductsInput = {
   id?: string
   name: string
   shortName: string
+  symbol?: string
+  decimals?: number
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -470,6 +578,8 @@ export type CurrencyTypeUpdateWithoutAllowedSellableProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  decimals?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -480,6 +590,8 @@ export type CurrencyTypeUncheckedUpdateWithoutAllowedSellableProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  symbol?: Prisma.StringFieldUpdateOperationsInput | string
+  decimals?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -530,6 +642,8 @@ export type CurrencyTypeSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   name?: boolean
   shortName?: boolean
+  symbol?: boolean
+  decimals?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -542,6 +656,8 @@ export type CurrencyTypeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   name?: boolean
   shortName?: boolean
+  symbol?: boolean
+  decimals?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -551,6 +667,8 @@ export type CurrencyTypeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   name?: boolean
   shortName?: boolean
+  symbol?: boolean
+  decimals?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -560,12 +678,14 @@ export type CurrencyTypeSelectScalar = {
   id?: boolean
   name?: boolean
   shortName?: boolean
+  symbol?: boolean
+  decimals?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type CurrencyTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "shortName" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["currencyType"]>
+export type CurrencyTypeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "shortName" | "symbol" | "decimals" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["currencyType"]>
 export type CurrencyTypeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rates?: boolean | Prisma.CurrencyType$ratesArgs<ExtArgs>
   allowedSellableProducts?: boolean | Prisma.CurrencyType$allowedSellableProductsArgs<ExtArgs>
@@ -584,6 +704,8 @@ export type $CurrencyTypePayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     name: string
     shortName: string
+    symbol: string
+    decimals: number
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1015,6 +1137,8 @@ export interface CurrencyTypeFieldRefs {
   readonly id: Prisma.FieldRef<"CurrencyType", 'String'>
   readonly name: Prisma.FieldRef<"CurrencyType", 'String'>
   readonly shortName: Prisma.FieldRef<"CurrencyType", 'String'>
+  readonly symbol: Prisma.FieldRef<"CurrencyType", 'String'>
+  readonly decimals: Prisma.FieldRef<"CurrencyType", 'Int'>
   readonly createdAt: Prisma.FieldRef<"CurrencyType", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"CurrencyType", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"CurrencyType", 'DateTime'>

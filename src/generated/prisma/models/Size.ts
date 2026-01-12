@@ -190,7 +190,7 @@ export type SizeWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Size"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Size"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Size"> | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesListRelationFilter
+  supplyTypes?: Prisma.SupplyTypeListRelationFilter
   supplies?: Prisma.SupplyListRelationFilter
   orders?: Prisma.OrderProductsListRelationFilter
 }
@@ -202,7 +202,7 @@ export type SizeOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  supplyTypes?: Prisma.SupplyTypeSizesOrderByRelationAggregateInput
+  supplyTypes?: Prisma.SupplyTypeOrderByRelationAggregateInput
   supplies?: Prisma.SupplyOrderByRelationAggregateInput
   orders?: Prisma.OrderProductsOrderByRelationAggregateInput
 }
@@ -217,7 +217,7 @@ export type SizeWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Size"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Size"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Size"> | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesListRelationFilter
+  supplyTypes?: Prisma.SupplyTypeListRelationFilter
   supplies?: Prisma.SupplyListRelationFilter
   orders?: Prisma.OrderProductsListRelationFilter
 }, "id">
@@ -253,7 +253,7 @@ export type SizeCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesCreateNestedManyWithoutSizeInput
+  supplyTypes?: Prisma.SupplyTypeCreateNestedManyWithoutSizesInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeSizeInput
   orders?: Prisma.OrderProductsCreateNestedManyWithoutSellableProductSizeInput
 }
@@ -265,7 +265,7 @@ export type SizeUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUncheckedCreateNestedManyWithoutSizeInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedCreateNestedManyWithoutSizesInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeSizeInput
   orders?: Prisma.OrderProductsUncheckedCreateNestedManyWithoutSellableProductSizeInput
 }
@@ -277,7 +277,7 @@ export type SizeUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUpdateManyWithoutSizeNestedInput
+  supplyTypes?: Prisma.SupplyTypeUpdateManyWithoutSizesNestedInput
   supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeSizeNestedInput
   orders?: Prisma.OrderProductsUpdateManyWithoutSellableProductSizeNestedInput
 }
@@ -289,7 +289,7 @@ export type SizeUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUncheckedUpdateManyWithoutSizeNestedInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedUpdateManyWithoutSizesNestedInput
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeSizeNestedInput
   orders?: Prisma.OrderProductsUncheckedUpdateManyWithoutSellableProductSizeNestedInput
 }
@@ -324,6 +324,16 @@ export type SizeUncheckedUpdateManyInput = {
 export type SizeScalarRelationFilter = {
   is?: Prisma.SizeWhereInput
   isNot?: Prisma.SizeWhereInput
+}
+
+export type SizeListRelationFilter = {
+  every?: Prisma.SizeWhereInput
+  some?: Prisma.SizeWhereInput
+  none?: Prisma.SizeWhereInput
+}
+
+export type SizeOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type SizeCountOrderByAggregateInput = {
@@ -381,18 +391,42 @@ export type SizeUpdateOneRequiredWithoutSuppliesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SizeUpdateToOneWithWhereWithoutSuppliesInput, Prisma.SizeUpdateWithoutSuppliesInput>, Prisma.SizeUncheckedUpdateWithoutSuppliesInput>
 }
 
-export type SizeCreateNestedOneWithoutSupplyTypesInput = {
-  create?: Prisma.XOR<Prisma.SizeCreateWithoutSupplyTypesInput, Prisma.SizeUncheckedCreateWithoutSupplyTypesInput>
-  connectOrCreate?: Prisma.SizeCreateOrConnectWithoutSupplyTypesInput
-  connect?: Prisma.SizeWhereUniqueInput
+export type SizeCreateNestedManyWithoutSupplyTypesInput = {
+  create?: Prisma.XOR<Prisma.SizeCreateWithoutSupplyTypesInput, Prisma.SizeUncheckedCreateWithoutSupplyTypesInput> | Prisma.SizeCreateWithoutSupplyTypesInput[] | Prisma.SizeUncheckedCreateWithoutSupplyTypesInput[]
+  connectOrCreate?: Prisma.SizeCreateOrConnectWithoutSupplyTypesInput | Prisma.SizeCreateOrConnectWithoutSupplyTypesInput[]
+  connect?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
 }
 
-export type SizeUpdateOneRequiredWithoutSupplyTypesNestedInput = {
-  create?: Prisma.XOR<Prisma.SizeCreateWithoutSupplyTypesInput, Prisma.SizeUncheckedCreateWithoutSupplyTypesInput>
-  connectOrCreate?: Prisma.SizeCreateOrConnectWithoutSupplyTypesInput
-  upsert?: Prisma.SizeUpsertWithoutSupplyTypesInput
-  connect?: Prisma.SizeWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SizeUpdateToOneWithWhereWithoutSupplyTypesInput, Prisma.SizeUpdateWithoutSupplyTypesInput>, Prisma.SizeUncheckedUpdateWithoutSupplyTypesInput>
+export type SizeUncheckedCreateNestedManyWithoutSupplyTypesInput = {
+  create?: Prisma.XOR<Prisma.SizeCreateWithoutSupplyTypesInput, Prisma.SizeUncheckedCreateWithoutSupplyTypesInput> | Prisma.SizeCreateWithoutSupplyTypesInput[] | Prisma.SizeUncheckedCreateWithoutSupplyTypesInput[]
+  connectOrCreate?: Prisma.SizeCreateOrConnectWithoutSupplyTypesInput | Prisma.SizeCreateOrConnectWithoutSupplyTypesInput[]
+  connect?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+}
+
+export type SizeUpdateManyWithoutSupplyTypesNestedInput = {
+  create?: Prisma.XOR<Prisma.SizeCreateWithoutSupplyTypesInput, Prisma.SizeUncheckedCreateWithoutSupplyTypesInput> | Prisma.SizeCreateWithoutSupplyTypesInput[] | Prisma.SizeUncheckedCreateWithoutSupplyTypesInput[]
+  connectOrCreate?: Prisma.SizeCreateOrConnectWithoutSupplyTypesInput | Prisma.SizeCreateOrConnectWithoutSupplyTypesInput[]
+  upsert?: Prisma.SizeUpsertWithWhereUniqueWithoutSupplyTypesInput | Prisma.SizeUpsertWithWhereUniqueWithoutSupplyTypesInput[]
+  set?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+  disconnect?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+  delete?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+  connect?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+  update?: Prisma.SizeUpdateWithWhereUniqueWithoutSupplyTypesInput | Prisma.SizeUpdateWithWhereUniqueWithoutSupplyTypesInput[]
+  updateMany?: Prisma.SizeUpdateManyWithWhereWithoutSupplyTypesInput | Prisma.SizeUpdateManyWithWhereWithoutSupplyTypesInput[]
+  deleteMany?: Prisma.SizeScalarWhereInput | Prisma.SizeScalarWhereInput[]
+}
+
+export type SizeUncheckedUpdateManyWithoutSupplyTypesNestedInput = {
+  create?: Prisma.XOR<Prisma.SizeCreateWithoutSupplyTypesInput, Prisma.SizeUncheckedCreateWithoutSupplyTypesInput> | Prisma.SizeCreateWithoutSupplyTypesInput[] | Prisma.SizeUncheckedCreateWithoutSupplyTypesInput[]
+  connectOrCreate?: Prisma.SizeCreateOrConnectWithoutSupplyTypesInput | Prisma.SizeCreateOrConnectWithoutSupplyTypesInput[]
+  upsert?: Prisma.SizeUpsertWithWhereUniqueWithoutSupplyTypesInput | Prisma.SizeUpsertWithWhereUniqueWithoutSupplyTypesInput[]
+  set?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+  disconnect?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+  delete?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+  connect?: Prisma.SizeWhereUniqueInput | Prisma.SizeWhereUniqueInput[]
+  update?: Prisma.SizeUpdateWithWhereUniqueWithoutSupplyTypesInput | Prisma.SizeUpdateWithWhereUniqueWithoutSupplyTypesInput[]
+  updateMany?: Prisma.SizeUpdateManyWithWhereWithoutSupplyTypesInput | Prisma.SizeUpdateManyWithWhereWithoutSupplyTypesInput[]
+  deleteMany?: Prisma.SizeScalarWhereInput | Prisma.SizeScalarWhereInput[]
 }
 
 export type SizeCreateWithoutOrdersInput = {
@@ -402,7 +436,7 @@ export type SizeCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesCreateNestedManyWithoutSizeInput
+  supplyTypes?: Prisma.SupplyTypeCreateNestedManyWithoutSizesInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeSizeInput
 }
 
@@ -413,7 +447,7 @@ export type SizeUncheckedCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUncheckedCreateNestedManyWithoutSizeInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedCreateNestedManyWithoutSizesInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeSizeInput
 }
 
@@ -440,7 +474,7 @@ export type SizeUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUpdateManyWithoutSizeNestedInput
+  supplyTypes?: Prisma.SupplyTypeUpdateManyWithoutSizesNestedInput
   supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeSizeNestedInput
 }
 
@@ -451,7 +485,7 @@ export type SizeUncheckedUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUncheckedUpdateManyWithoutSizeNestedInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedUpdateManyWithoutSizesNestedInput
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeSizeNestedInput
 }
 
@@ -462,7 +496,7 @@ export type SizeCreateWithoutSuppliesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesCreateNestedManyWithoutSizeInput
+  supplyTypes?: Prisma.SupplyTypeCreateNestedManyWithoutSizesInput
   orders?: Prisma.OrderProductsCreateNestedManyWithoutSellableProductSizeInput
 }
 
@@ -473,7 +507,7 @@ export type SizeUncheckedCreateWithoutSuppliesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUncheckedCreateNestedManyWithoutSizeInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedCreateNestedManyWithoutSizesInput
   orders?: Prisma.OrderProductsUncheckedCreateNestedManyWithoutSellableProductSizeInput
 }
 
@@ -500,7 +534,7 @@ export type SizeUpdateWithoutSuppliesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUpdateManyWithoutSizeNestedInput
+  supplyTypes?: Prisma.SupplyTypeUpdateManyWithoutSizesNestedInput
   orders?: Prisma.OrderProductsUpdateManyWithoutSellableProductSizeNestedInput
 }
 
@@ -511,7 +545,7 @@ export type SizeUncheckedUpdateWithoutSuppliesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeSizesUncheckedUpdateManyWithoutSizeNestedInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedUpdateManyWithoutSizesNestedInput
   orders?: Prisma.OrderProductsUncheckedUpdateManyWithoutSellableProductSizeNestedInput
 }
 
@@ -542,15 +576,32 @@ export type SizeCreateOrConnectWithoutSupplyTypesInput = {
   create: Prisma.XOR<Prisma.SizeCreateWithoutSupplyTypesInput, Prisma.SizeUncheckedCreateWithoutSupplyTypesInput>
 }
 
-export type SizeUpsertWithoutSupplyTypesInput = {
+export type SizeUpsertWithWhereUniqueWithoutSupplyTypesInput = {
+  where: Prisma.SizeWhereUniqueInput
   update: Prisma.XOR<Prisma.SizeUpdateWithoutSupplyTypesInput, Prisma.SizeUncheckedUpdateWithoutSupplyTypesInput>
   create: Prisma.XOR<Prisma.SizeCreateWithoutSupplyTypesInput, Prisma.SizeUncheckedCreateWithoutSupplyTypesInput>
-  where?: Prisma.SizeWhereInput
 }
 
-export type SizeUpdateToOneWithWhereWithoutSupplyTypesInput = {
-  where?: Prisma.SizeWhereInput
+export type SizeUpdateWithWhereUniqueWithoutSupplyTypesInput = {
+  where: Prisma.SizeWhereUniqueInput
   data: Prisma.XOR<Prisma.SizeUpdateWithoutSupplyTypesInput, Prisma.SizeUncheckedUpdateWithoutSupplyTypesInput>
+}
+
+export type SizeUpdateManyWithWhereWithoutSupplyTypesInput = {
+  where: Prisma.SizeScalarWhereInput
+  data: Prisma.XOR<Prisma.SizeUpdateManyMutationInput, Prisma.SizeUncheckedUpdateManyWithoutSupplyTypesInput>
+}
+
+export type SizeScalarWhereInput = {
+  AND?: Prisma.SizeScalarWhereInput | Prisma.SizeScalarWhereInput[]
+  OR?: Prisma.SizeScalarWhereInput[]
+  NOT?: Prisma.SizeScalarWhereInput | Prisma.SizeScalarWhereInput[]
+  id?: Prisma.StringFilter<"Size"> | string
+  name?: Prisma.StringFilter<"Size"> | string
+  shortName?: Prisma.StringFilter<"Size"> | string
+  createdAt?: Prisma.DateTimeFilter<"Size"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Size"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Size"> | Date | string | null
 }
 
 export type SizeUpdateWithoutSupplyTypesInput = {
@@ -573,6 +624,15 @@ export type SizeUncheckedUpdateWithoutSupplyTypesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeSizeNestedInput
   orders?: Prisma.OrderProductsUncheckedUpdateManyWithoutSellableProductSizeNestedInput
+}
+
+export type SizeUncheckedUpdateManyWithoutSupplyTypesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  shortName?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -606,7 +666,7 @@ export type SizeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  * SizeCountOutputType without action
  */
 export type SizeCountOutputTypeCountSupplyTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SupplyTypeSizesWhereInput
+  where?: Prisma.SupplyTypeWhereInput
 }
 
 /**
@@ -677,7 +737,7 @@ export type SizeIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $SizePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Size"
   objects: {
-    supplyTypes: Prisma.$SupplyTypeSizesPayload<ExtArgs>[]
+    supplyTypes: Prisma.$SupplyTypePayload<ExtArgs>[]
     supplies: Prisma.$SupplyPayload<ExtArgs>[]
     orders: Prisma.$OrderProductsPayload<ExtArgs>[]
   }
@@ -1082,7 +1142,7 @@ readonly fields: SizeFieldRefs;
  */
 export interface Prisma__SizeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  supplyTypes<T extends Prisma.Size$supplyTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Size$supplyTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyTypeSizesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  supplyTypes<T extends Prisma.Size$supplyTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Size$supplyTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   supplies<T extends Prisma.Size$suppliesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Size$suppliesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.Size$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Size$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderProductsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1512,23 +1572,23 @@ export type SizeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
  */
 export type Size$supplyTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the SupplyTypeSizes
+   * Select specific fields to fetch from the SupplyType
    */
-  select?: Prisma.SupplyTypeSizesSelect<ExtArgs> | null
+  select?: Prisma.SupplyTypeSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the SupplyTypeSizes
+   * Omit specific fields from the SupplyType
    */
-  omit?: Prisma.SupplyTypeSizesOmit<ExtArgs> | null
+  omit?: Prisma.SupplyTypeOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SupplyTypeSizesInclude<ExtArgs> | null
-  where?: Prisma.SupplyTypeSizesWhereInput
-  orderBy?: Prisma.SupplyTypeSizesOrderByWithRelationInput | Prisma.SupplyTypeSizesOrderByWithRelationInput[]
-  cursor?: Prisma.SupplyTypeSizesWhereUniqueInput
+  include?: Prisma.SupplyTypeInclude<ExtArgs> | null
+  where?: Prisma.SupplyTypeWhereInput
+  orderBy?: Prisma.SupplyTypeOrderByWithRelationInput | Prisma.SupplyTypeOrderByWithRelationInput[]
+  cursor?: Prisma.SupplyTypeWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SupplyTypeSizesScalarFieldEnum | Prisma.SupplyTypeSizesScalarFieldEnum[]
+  distinct?: Prisma.SupplyTypeScalarFieldEnum | Prisma.SupplyTypeScalarFieldEnum[]
 }
 
 /**

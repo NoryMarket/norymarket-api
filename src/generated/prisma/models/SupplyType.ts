@@ -191,8 +191,8 @@ export type SupplyTypeWhereInput = {
   deletedAt?: Prisma.DateTimeNullableFilter<"SupplyType"> | Date | string | null
   quantityUnitId?: Prisma.StringFilter<"SupplyType"> | string
   quantityUnit?: Prisma.XOR<Prisma.QuantityUnitScalarRelationFilter, Prisma.QuantityUnitWhereInput>
-  colors?: Prisma.SupplyTypeColorsListRelationFilter
-  sizes?: Prisma.SupplyTypeSizesListRelationFilter
+  colors?: Prisma.ColorListRelationFilter
+  sizes?: Prisma.SizeListRelationFilter
   recipes?: Prisma.BuildOfMaterialsRecipeListRelationFilter
   supplies?: Prisma.SupplyListRelationFilter
 }
@@ -205,8 +205,8 @@ export type SupplyTypeOrderByWithRelationInput = {
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   quantityUnitId?: Prisma.SortOrder
   quantityUnit?: Prisma.QuantityUnitOrderByWithRelationInput
-  colors?: Prisma.SupplyTypeColorsOrderByRelationAggregateInput
-  sizes?: Prisma.SupplyTypeSizesOrderByRelationAggregateInput
+  colors?: Prisma.ColorOrderByRelationAggregateInput
+  sizes?: Prisma.SizeOrderByRelationAggregateInput
   recipes?: Prisma.BuildOfMaterialsRecipeOrderByRelationAggregateInput
   supplies?: Prisma.SupplyOrderByRelationAggregateInput
 }
@@ -222,8 +222,8 @@ export type SupplyTypeWhereUniqueInput = Prisma.AtLeast<{
   deletedAt?: Prisma.DateTimeNullableFilter<"SupplyType"> | Date | string | null
   quantityUnitId?: Prisma.StringFilter<"SupplyType"> | string
   quantityUnit?: Prisma.XOR<Prisma.QuantityUnitScalarRelationFilter, Prisma.QuantityUnitWhereInput>
-  colors?: Prisma.SupplyTypeColorsListRelationFilter
-  sizes?: Prisma.SupplyTypeSizesListRelationFilter
+  colors?: Prisma.ColorListRelationFilter
+  sizes?: Prisma.SizeListRelationFilter
   recipes?: Prisma.BuildOfMaterialsRecipeListRelationFilter
   supplies?: Prisma.SupplyListRelationFilter
 }, "id">
@@ -259,8 +259,8 @@ export type SupplyTypeCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnit: Prisma.QuantityUnitCreateNestedOneWithoutSupplyTypesInput
-  colors?: Prisma.SupplyTypeColorsCreateNestedManyWithoutSupplyTypeInput
-  sizes?: Prisma.SupplyTypeSizesCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorCreateNestedManyWithoutSupplyTypesInput
+  sizes?: Prisma.SizeCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeCreateNestedManyWithoutSupplyTypeInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeInput
 }
@@ -272,8 +272,8 @@ export type SupplyTypeUncheckedCreateInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnitId: string
-  colors?: Prisma.SupplyTypeColorsUncheckedCreateNestedManyWithoutSupplyTypeInput
-  sizes?: Prisma.SupplyTypeSizesUncheckedCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorUncheckedCreateNestedManyWithoutSupplyTypesInput
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeUncheckedCreateNestedManyWithoutSupplyTypeInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeInput
 }
@@ -285,8 +285,8 @@ export type SupplyTypeUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantityUnit?: Prisma.QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput
-  colors?: Prisma.SupplyTypeColorsUpdateManyWithoutSupplyTypeNestedInput
-  sizes?: Prisma.SupplyTypeSizesUpdateManyWithoutSupplyTypeNestedInput
+  colors?: Prisma.ColorUpdateManyWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUpdateManyWithoutSupplyTypesNestedInput
   recipes?: Prisma.BuildOfMaterialsRecipeUpdateManyWithoutSupplyTypeNestedInput
   supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeNestedInput
 }
@@ -298,8 +298,8 @@ export type SupplyTypeUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
-  colors?: Prisma.SupplyTypeColorsUncheckedUpdateManyWithoutSupplyTypeNestedInput
-  sizes?: Prisma.SupplyTypeSizesUncheckedUpdateManyWithoutSupplyTypeNestedInput
+  colors?: Prisma.ColorUncheckedUpdateManyWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutSupplyTypesNestedInput
   recipes?: Prisma.BuildOfMaterialsRecipeUncheckedUpdateManyWithoutSupplyTypeNestedInput
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeNestedInput
 }
@@ -442,32 +442,80 @@ export type SupplyTypeUncheckedUpdateManyWithoutQuantityUnitNestedInput = {
   deleteMany?: Prisma.SupplyTypeScalarWhereInput | Prisma.SupplyTypeScalarWhereInput[]
 }
 
-export type SupplyTypeCreateNestedOneWithoutColorsInput = {
-  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutColorsInput, Prisma.SupplyTypeUncheckedCreateWithoutColorsInput>
-  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutColorsInput
-  connect?: Prisma.SupplyTypeWhereUniqueInput
+export type SupplyTypeCreateNestedManyWithoutColorsInput = {
+  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutColorsInput, Prisma.SupplyTypeUncheckedCreateWithoutColorsInput> | Prisma.SupplyTypeCreateWithoutColorsInput[] | Prisma.SupplyTypeUncheckedCreateWithoutColorsInput[]
+  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutColorsInput | Prisma.SupplyTypeCreateOrConnectWithoutColorsInput[]
+  connect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
 }
 
-export type SupplyTypeUpdateOneRequiredWithoutColorsNestedInput = {
-  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutColorsInput, Prisma.SupplyTypeUncheckedCreateWithoutColorsInput>
-  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutColorsInput
-  upsert?: Prisma.SupplyTypeUpsertWithoutColorsInput
-  connect?: Prisma.SupplyTypeWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SupplyTypeUpdateToOneWithWhereWithoutColorsInput, Prisma.SupplyTypeUpdateWithoutColorsInput>, Prisma.SupplyTypeUncheckedUpdateWithoutColorsInput>
+export type SupplyTypeUncheckedCreateNestedManyWithoutColorsInput = {
+  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutColorsInput, Prisma.SupplyTypeUncheckedCreateWithoutColorsInput> | Prisma.SupplyTypeCreateWithoutColorsInput[] | Prisma.SupplyTypeUncheckedCreateWithoutColorsInput[]
+  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutColorsInput | Prisma.SupplyTypeCreateOrConnectWithoutColorsInput[]
+  connect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
 }
 
-export type SupplyTypeCreateNestedOneWithoutSizesInput = {
-  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutSizesInput, Prisma.SupplyTypeUncheckedCreateWithoutSizesInput>
-  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutSizesInput
-  connect?: Prisma.SupplyTypeWhereUniqueInput
+export type SupplyTypeUpdateManyWithoutColorsNestedInput = {
+  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutColorsInput, Prisma.SupplyTypeUncheckedCreateWithoutColorsInput> | Prisma.SupplyTypeCreateWithoutColorsInput[] | Prisma.SupplyTypeUncheckedCreateWithoutColorsInput[]
+  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutColorsInput | Prisma.SupplyTypeCreateOrConnectWithoutColorsInput[]
+  upsert?: Prisma.SupplyTypeUpsertWithWhereUniqueWithoutColorsInput | Prisma.SupplyTypeUpsertWithWhereUniqueWithoutColorsInput[]
+  set?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  disconnect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  delete?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  connect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  update?: Prisma.SupplyTypeUpdateWithWhereUniqueWithoutColorsInput | Prisma.SupplyTypeUpdateWithWhereUniqueWithoutColorsInput[]
+  updateMany?: Prisma.SupplyTypeUpdateManyWithWhereWithoutColorsInput | Prisma.SupplyTypeUpdateManyWithWhereWithoutColorsInput[]
+  deleteMany?: Prisma.SupplyTypeScalarWhereInput | Prisma.SupplyTypeScalarWhereInput[]
 }
 
-export type SupplyTypeUpdateOneRequiredWithoutSizesNestedInput = {
-  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutSizesInput, Prisma.SupplyTypeUncheckedCreateWithoutSizesInput>
-  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutSizesInput
-  upsert?: Prisma.SupplyTypeUpsertWithoutSizesInput
-  connect?: Prisma.SupplyTypeWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SupplyTypeUpdateToOneWithWhereWithoutSizesInput, Prisma.SupplyTypeUpdateWithoutSizesInput>, Prisma.SupplyTypeUncheckedUpdateWithoutSizesInput>
+export type SupplyTypeUncheckedUpdateManyWithoutColorsNestedInput = {
+  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutColorsInput, Prisma.SupplyTypeUncheckedCreateWithoutColorsInput> | Prisma.SupplyTypeCreateWithoutColorsInput[] | Prisma.SupplyTypeUncheckedCreateWithoutColorsInput[]
+  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutColorsInput | Prisma.SupplyTypeCreateOrConnectWithoutColorsInput[]
+  upsert?: Prisma.SupplyTypeUpsertWithWhereUniqueWithoutColorsInput | Prisma.SupplyTypeUpsertWithWhereUniqueWithoutColorsInput[]
+  set?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  disconnect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  delete?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  connect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  update?: Prisma.SupplyTypeUpdateWithWhereUniqueWithoutColorsInput | Prisma.SupplyTypeUpdateWithWhereUniqueWithoutColorsInput[]
+  updateMany?: Prisma.SupplyTypeUpdateManyWithWhereWithoutColorsInput | Prisma.SupplyTypeUpdateManyWithWhereWithoutColorsInput[]
+  deleteMany?: Prisma.SupplyTypeScalarWhereInput | Prisma.SupplyTypeScalarWhereInput[]
+}
+
+export type SupplyTypeCreateNestedManyWithoutSizesInput = {
+  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutSizesInput, Prisma.SupplyTypeUncheckedCreateWithoutSizesInput> | Prisma.SupplyTypeCreateWithoutSizesInput[] | Prisma.SupplyTypeUncheckedCreateWithoutSizesInput[]
+  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutSizesInput | Prisma.SupplyTypeCreateOrConnectWithoutSizesInput[]
+  connect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+}
+
+export type SupplyTypeUncheckedCreateNestedManyWithoutSizesInput = {
+  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutSizesInput, Prisma.SupplyTypeUncheckedCreateWithoutSizesInput> | Prisma.SupplyTypeCreateWithoutSizesInput[] | Prisma.SupplyTypeUncheckedCreateWithoutSizesInput[]
+  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutSizesInput | Prisma.SupplyTypeCreateOrConnectWithoutSizesInput[]
+  connect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+}
+
+export type SupplyTypeUpdateManyWithoutSizesNestedInput = {
+  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutSizesInput, Prisma.SupplyTypeUncheckedCreateWithoutSizesInput> | Prisma.SupplyTypeCreateWithoutSizesInput[] | Prisma.SupplyTypeUncheckedCreateWithoutSizesInput[]
+  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutSizesInput | Prisma.SupplyTypeCreateOrConnectWithoutSizesInput[]
+  upsert?: Prisma.SupplyTypeUpsertWithWhereUniqueWithoutSizesInput | Prisma.SupplyTypeUpsertWithWhereUniqueWithoutSizesInput[]
+  set?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  disconnect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  delete?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  connect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  update?: Prisma.SupplyTypeUpdateWithWhereUniqueWithoutSizesInput | Prisma.SupplyTypeUpdateWithWhereUniqueWithoutSizesInput[]
+  updateMany?: Prisma.SupplyTypeUpdateManyWithWhereWithoutSizesInput | Prisma.SupplyTypeUpdateManyWithWhereWithoutSizesInput[]
+  deleteMany?: Prisma.SupplyTypeScalarWhereInput | Prisma.SupplyTypeScalarWhereInput[]
+}
+
+export type SupplyTypeUncheckedUpdateManyWithoutSizesNestedInput = {
+  create?: Prisma.XOR<Prisma.SupplyTypeCreateWithoutSizesInput, Prisma.SupplyTypeUncheckedCreateWithoutSizesInput> | Prisma.SupplyTypeCreateWithoutSizesInput[] | Prisma.SupplyTypeUncheckedCreateWithoutSizesInput[]
+  connectOrCreate?: Prisma.SupplyTypeCreateOrConnectWithoutSizesInput | Prisma.SupplyTypeCreateOrConnectWithoutSizesInput[]
+  upsert?: Prisma.SupplyTypeUpsertWithWhereUniqueWithoutSizesInput | Prisma.SupplyTypeUpsertWithWhereUniqueWithoutSizesInput[]
+  set?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  disconnect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  delete?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  connect?: Prisma.SupplyTypeWhereUniqueInput | Prisma.SupplyTypeWhereUniqueInput[]
+  update?: Prisma.SupplyTypeUpdateWithWhereUniqueWithoutSizesInput | Prisma.SupplyTypeUpdateWithWhereUniqueWithoutSizesInput[]
+  updateMany?: Prisma.SupplyTypeUpdateManyWithWhereWithoutSizesInput | Prisma.SupplyTypeUpdateManyWithWhereWithoutSizesInput[]
+  deleteMany?: Prisma.SupplyTypeScalarWhereInput | Prisma.SupplyTypeScalarWhereInput[]
 }
 
 export type SupplyTypeCreateWithoutRecipesInput = {
@@ -477,8 +525,8 @@ export type SupplyTypeCreateWithoutRecipesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnit: Prisma.QuantityUnitCreateNestedOneWithoutSupplyTypesInput
-  colors?: Prisma.SupplyTypeColorsCreateNestedManyWithoutSupplyTypeInput
-  sizes?: Prisma.SupplyTypeSizesCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorCreateNestedManyWithoutSupplyTypesInput
+  sizes?: Prisma.SizeCreateNestedManyWithoutSupplyTypesInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeInput
 }
 
@@ -489,8 +537,8 @@ export type SupplyTypeUncheckedCreateWithoutRecipesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnitId: string
-  colors?: Prisma.SupplyTypeColorsUncheckedCreateNestedManyWithoutSupplyTypeInput
-  sizes?: Prisma.SupplyTypeSizesUncheckedCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorUncheckedCreateNestedManyWithoutSupplyTypesInput
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutSupplyTypesInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeInput
 }
 
@@ -517,8 +565,8 @@ export type SupplyTypeUpdateWithoutRecipesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantityUnit?: Prisma.QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput
-  colors?: Prisma.SupplyTypeColorsUpdateManyWithoutSupplyTypeNestedInput
-  sizes?: Prisma.SupplyTypeSizesUpdateManyWithoutSupplyTypeNestedInput
+  colors?: Prisma.ColorUpdateManyWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUpdateManyWithoutSupplyTypesNestedInput
   supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeNestedInput
 }
 
@@ -529,8 +577,8 @@ export type SupplyTypeUncheckedUpdateWithoutRecipesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
-  colors?: Prisma.SupplyTypeColorsUncheckedUpdateManyWithoutSupplyTypeNestedInput
-  sizes?: Prisma.SupplyTypeSizesUncheckedUpdateManyWithoutSupplyTypeNestedInput
+  colors?: Prisma.ColorUncheckedUpdateManyWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutSupplyTypesNestedInput
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeNestedInput
 }
 
@@ -541,8 +589,8 @@ export type SupplyTypeCreateWithoutSuppliesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnit: Prisma.QuantityUnitCreateNestedOneWithoutSupplyTypesInput
-  colors?: Prisma.SupplyTypeColorsCreateNestedManyWithoutSupplyTypeInput
-  sizes?: Prisma.SupplyTypeSizesCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorCreateNestedManyWithoutSupplyTypesInput
+  sizes?: Prisma.SizeCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeCreateNestedManyWithoutSupplyTypeInput
 }
 
@@ -553,8 +601,8 @@ export type SupplyTypeUncheckedCreateWithoutSuppliesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnitId: string
-  colors?: Prisma.SupplyTypeColorsUncheckedCreateNestedManyWithoutSupplyTypeInput
-  sizes?: Prisma.SupplyTypeSizesUncheckedCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorUncheckedCreateNestedManyWithoutSupplyTypesInput
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeUncheckedCreateNestedManyWithoutSupplyTypeInput
 }
 
@@ -581,8 +629,8 @@ export type SupplyTypeUpdateWithoutSuppliesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantityUnit?: Prisma.QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput
-  colors?: Prisma.SupplyTypeColorsUpdateManyWithoutSupplyTypeNestedInput
-  sizes?: Prisma.SupplyTypeSizesUpdateManyWithoutSupplyTypeNestedInput
+  colors?: Prisma.ColorUpdateManyWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUpdateManyWithoutSupplyTypesNestedInput
   recipes?: Prisma.BuildOfMaterialsRecipeUpdateManyWithoutSupplyTypeNestedInput
 }
 
@@ -593,8 +641,8 @@ export type SupplyTypeUncheckedUpdateWithoutSuppliesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
-  colors?: Prisma.SupplyTypeColorsUncheckedUpdateManyWithoutSupplyTypeNestedInput
-  sizes?: Prisma.SupplyTypeSizesUncheckedUpdateManyWithoutSupplyTypeNestedInput
+  colors?: Prisma.ColorUncheckedUpdateManyWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutSupplyTypesNestedInput
   recipes?: Prisma.BuildOfMaterialsRecipeUncheckedUpdateManyWithoutSupplyTypeNestedInput
 }
 
@@ -604,8 +652,8 @@ export type SupplyTypeCreateWithoutQuantityUnitInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  colors?: Prisma.SupplyTypeColorsCreateNestedManyWithoutSupplyTypeInput
-  sizes?: Prisma.SupplyTypeSizesCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorCreateNestedManyWithoutSupplyTypesInput
+  sizes?: Prisma.SizeCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeCreateNestedManyWithoutSupplyTypeInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeInput
 }
@@ -616,8 +664,8 @@ export type SupplyTypeUncheckedCreateWithoutQuantityUnitInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  colors?: Prisma.SupplyTypeColorsUncheckedCreateNestedManyWithoutSupplyTypeInput
-  sizes?: Prisma.SupplyTypeSizesUncheckedCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorUncheckedCreateNestedManyWithoutSupplyTypesInput
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeUncheckedCreateNestedManyWithoutSupplyTypeInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeInput
 }
@@ -667,7 +715,7 @@ export type SupplyTypeCreateWithoutColorsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnit: Prisma.QuantityUnitCreateNestedOneWithoutSupplyTypesInput
-  sizes?: Prisma.SupplyTypeSizesCreateNestedManyWithoutSupplyTypeInput
+  sizes?: Prisma.SizeCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeCreateNestedManyWithoutSupplyTypeInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeInput
 }
@@ -679,7 +727,7 @@ export type SupplyTypeUncheckedCreateWithoutColorsInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnitId: string
-  sizes?: Prisma.SupplyTypeSizesUncheckedCreateNestedManyWithoutSupplyTypeInput
+  sizes?: Prisma.SizeUncheckedCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeUncheckedCreateNestedManyWithoutSupplyTypeInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeInput
 }
@@ -689,39 +737,20 @@ export type SupplyTypeCreateOrConnectWithoutColorsInput = {
   create: Prisma.XOR<Prisma.SupplyTypeCreateWithoutColorsInput, Prisma.SupplyTypeUncheckedCreateWithoutColorsInput>
 }
 
-export type SupplyTypeUpsertWithoutColorsInput = {
+export type SupplyTypeUpsertWithWhereUniqueWithoutColorsInput = {
+  where: Prisma.SupplyTypeWhereUniqueInput
   update: Prisma.XOR<Prisma.SupplyTypeUpdateWithoutColorsInput, Prisma.SupplyTypeUncheckedUpdateWithoutColorsInput>
   create: Prisma.XOR<Prisma.SupplyTypeCreateWithoutColorsInput, Prisma.SupplyTypeUncheckedCreateWithoutColorsInput>
-  where?: Prisma.SupplyTypeWhereInput
 }
 
-export type SupplyTypeUpdateToOneWithWhereWithoutColorsInput = {
-  where?: Prisma.SupplyTypeWhereInput
+export type SupplyTypeUpdateWithWhereUniqueWithoutColorsInput = {
+  where: Prisma.SupplyTypeWhereUniqueInput
   data: Prisma.XOR<Prisma.SupplyTypeUpdateWithoutColorsInput, Prisma.SupplyTypeUncheckedUpdateWithoutColorsInput>
 }
 
-export type SupplyTypeUpdateWithoutColorsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  quantityUnit?: Prisma.QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput
-  sizes?: Prisma.SupplyTypeSizesUpdateManyWithoutSupplyTypeNestedInput
-  recipes?: Prisma.BuildOfMaterialsRecipeUpdateManyWithoutSupplyTypeNestedInput
-  supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeNestedInput
-}
-
-export type SupplyTypeUncheckedUpdateWithoutColorsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
-  sizes?: Prisma.SupplyTypeSizesUncheckedUpdateManyWithoutSupplyTypeNestedInput
-  recipes?: Prisma.BuildOfMaterialsRecipeUncheckedUpdateManyWithoutSupplyTypeNestedInput
-  supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeNestedInput
+export type SupplyTypeUpdateManyWithWhereWithoutColorsInput = {
+  where: Prisma.SupplyTypeScalarWhereInput
+  data: Prisma.XOR<Prisma.SupplyTypeUpdateManyMutationInput, Prisma.SupplyTypeUncheckedUpdateManyWithoutColorsInput>
 }
 
 export type SupplyTypeCreateWithoutSizesInput = {
@@ -731,7 +760,7 @@ export type SupplyTypeCreateWithoutSizesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnit: Prisma.QuantityUnitCreateNestedOneWithoutSupplyTypesInput
-  colors?: Prisma.SupplyTypeColorsCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeCreateNestedManyWithoutSupplyTypeInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeInput
 }
@@ -743,7 +772,7 @@ export type SupplyTypeUncheckedCreateWithoutSizesInput = {
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   quantityUnitId: string
-  colors?: Prisma.SupplyTypeColorsUncheckedCreateNestedManyWithoutSupplyTypeInput
+  colors?: Prisma.ColorUncheckedCreateNestedManyWithoutSupplyTypesInput
   recipes?: Prisma.BuildOfMaterialsRecipeUncheckedCreateNestedManyWithoutSupplyTypeInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeInput
 }
@@ -753,39 +782,20 @@ export type SupplyTypeCreateOrConnectWithoutSizesInput = {
   create: Prisma.XOR<Prisma.SupplyTypeCreateWithoutSizesInput, Prisma.SupplyTypeUncheckedCreateWithoutSizesInput>
 }
 
-export type SupplyTypeUpsertWithoutSizesInput = {
+export type SupplyTypeUpsertWithWhereUniqueWithoutSizesInput = {
+  where: Prisma.SupplyTypeWhereUniqueInput
   update: Prisma.XOR<Prisma.SupplyTypeUpdateWithoutSizesInput, Prisma.SupplyTypeUncheckedUpdateWithoutSizesInput>
   create: Prisma.XOR<Prisma.SupplyTypeCreateWithoutSizesInput, Prisma.SupplyTypeUncheckedCreateWithoutSizesInput>
-  where?: Prisma.SupplyTypeWhereInput
 }
 
-export type SupplyTypeUpdateToOneWithWhereWithoutSizesInput = {
-  where?: Prisma.SupplyTypeWhereInput
+export type SupplyTypeUpdateWithWhereUniqueWithoutSizesInput = {
+  where: Prisma.SupplyTypeWhereUniqueInput
   data: Prisma.XOR<Prisma.SupplyTypeUpdateWithoutSizesInput, Prisma.SupplyTypeUncheckedUpdateWithoutSizesInput>
 }
 
-export type SupplyTypeUpdateWithoutSizesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  quantityUnit?: Prisma.QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput
-  colors?: Prisma.SupplyTypeColorsUpdateManyWithoutSupplyTypeNestedInput
-  recipes?: Prisma.BuildOfMaterialsRecipeUpdateManyWithoutSupplyTypeNestedInput
-  supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeNestedInput
-}
-
-export type SupplyTypeUncheckedUpdateWithoutSizesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
-  colors?: Prisma.SupplyTypeColorsUncheckedUpdateManyWithoutSupplyTypeNestedInput
-  recipes?: Prisma.BuildOfMaterialsRecipeUncheckedUpdateManyWithoutSupplyTypeNestedInput
-  supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeNestedInput
+export type SupplyTypeUpdateManyWithWhereWithoutSizesInput = {
+  where: Prisma.SupplyTypeScalarWhereInput
+  data: Prisma.XOR<Prisma.SupplyTypeUpdateManyMutationInput, Prisma.SupplyTypeUncheckedUpdateManyWithoutSizesInput>
 }
 
 export type SupplyTypeCreateManyQuantityUnitInput = {
@@ -802,8 +812,8 @@ export type SupplyTypeUpdateWithoutQuantityUnitInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  colors?: Prisma.SupplyTypeColorsUpdateManyWithoutSupplyTypeNestedInput
-  sizes?: Prisma.SupplyTypeSizesUpdateManyWithoutSupplyTypeNestedInput
+  colors?: Prisma.ColorUpdateManyWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUpdateManyWithoutSupplyTypesNestedInput
   recipes?: Prisma.BuildOfMaterialsRecipeUpdateManyWithoutSupplyTypeNestedInput
   supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeNestedInput
 }
@@ -814,8 +824,8 @@ export type SupplyTypeUncheckedUpdateWithoutQuantityUnitInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  colors?: Prisma.SupplyTypeColorsUncheckedUpdateManyWithoutSupplyTypeNestedInput
-  sizes?: Prisma.SupplyTypeSizesUncheckedUpdateManyWithoutSupplyTypeNestedInput
+  colors?: Prisma.ColorUncheckedUpdateManyWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutSupplyTypesNestedInput
   recipes?: Prisma.BuildOfMaterialsRecipeUncheckedUpdateManyWithoutSupplyTypeNestedInput
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeNestedInput
 }
@@ -826,6 +836,72 @@ export type SupplyTypeUncheckedUpdateManyWithoutQuantityUnitInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type SupplyTypeUpdateWithoutColorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quantityUnit?: Prisma.QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput
+  sizes?: Prisma.SizeUpdateManyWithoutSupplyTypesNestedInput
+  recipes?: Prisma.BuildOfMaterialsRecipeUpdateManyWithoutSupplyTypeNestedInput
+  supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeNestedInput
+}
+
+export type SupplyTypeUncheckedUpdateWithoutColorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
+  sizes?: Prisma.SizeUncheckedUpdateManyWithoutSupplyTypesNestedInput
+  recipes?: Prisma.BuildOfMaterialsRecipeUncheckedUpdateManyWithoutSupplyTypeNestedInput
+  supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeNestedInput
+}
+
+export type SupplyTypeUncheckedUpdateManyWithoutColorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type SupplyTypeUpdateWithoutSizesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quantityUnit?: Prisma.QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput
+  colors?: Prisma.ColorUpdateManyWithoutSupplyTypesNestedInput
+  recipes?: Prisma.BuildOfMaterialsRecipeUpdateManyWithoutSupplyTypeNestedInput
+  supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeNestedInput
+}
+
+export type SupplyTypeUncheckedUpdateWithoutSizesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
+  colors?: Prisma.ColorUncheckedUpdateManyWithoutSupplyTypesNestedInput
+  recipes?: Prisma.BuildOfMaterialsRecipeUncheckedUpdateManyWithoutSupplyTypeNestedInput
+  supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeNestedInput
+}
+
+export type SupplyTypeUncheckedUpdateManyWithoutSizesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quantityUnitId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -861,14 +937,14 @@ export type SupplyTypeCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
  * SupplyTypeCountOutputType without action
  */
 export type SupplyTypeCountOutputTypeCountColorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SupplyTypeColorsWhereInput
+  where?: Prisma.ColorWhereInput
 }
 
 /**
  * SupplyTypeCountOutputType without action
  */
 export type SupplyTypeCountOutputTypeCountSizesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SupplyTypeSizesWhereInput
+  where?: Prisma.SizeWhereInput
 }
 
 /**
@@ -950,8 +1026,8 @@ export type $SupplyTypePayload<ExtArgs extends runtime.Types.Extensions.Internal
   name: "SupplyType"
   objects: {
     quantityUnit: Prisma.$QuantityUnitPayload<ExtArgs>
-    colors: Prisma.$SupplyTypeColorsPayload<ExtArgs>[]
-    sizes: Prisma.$SupplyTypeSizesPayload<ExtArgs>[]
+    colors: Prisma.$ColorPayload<ExtArgs>[]
+    sizes: Prisma.$SizePayload<ExtArgs>[]
     recipes: Prisma.$BuildOfMaterialsRecipePayload<ExtArgs>[]
     supplies: Prisma.$SupplyPayload<ExtArgs>[]
   }
@@ -1357,8 +1433,8 @@ readonly fields: SupplyTypeFieldRefs;
 export interface Prisma__SupplyTypeClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   quantityUnit<T extends Prisma.QuantityUnitDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuantityUnitDefaultArgs<ExtArgs>>): Prisma.Prisma__QuantityUnitClient<runtime.Types.Result.GetResult<Prisma.$QuantityUnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  colors<T extends Prisma.SupplyType$colorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplyType$colorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyTypeColorsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sizes<T extends Prisma.SupplyType$sizesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplyType$sizesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyTypeSizesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  colors<T extends Prisma.SupplyType$colorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplyType$colorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ColorPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sizes<T extends Prisma.SupplyType$sizesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplyType$sizesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SizePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   recipes<T extends Prisma.SupplyType$recipesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplyType$recipesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BuildOfMaterialsRecipePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   supplies<T extends Prisma.SupplyType$suppliesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SupplyType$suppliesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1796,23 +1872,23 @@ export type SupplyTypeDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
  */
 export type SupplyType$colorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the SupplyTypeColors
+   * Select specific fields to fetch from the Color
    */
-  select?: Prisma.SupplyTypeColorsSelect<ExtArgs> | null
+  select?: Prisma.ColorSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the SupplyTypeColors
+   * Omit specific fields from the Color
    */
-  omit?: Prisma.SupplyTypeColorsOmit<ExtArgs> | null
+  omit?: Prisma.ColorOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SupplyTypeColorsInclude<ExtArgs> | null
-  where?: Prisma.SupplyTypeColorsWhereInput
-  orderBy?: Prisma.SupplyTypeColorsOrderByWithRelationInput | Prisma.SupplyTypeColorsOrderByWithRelationInput[]
-  cursor?: Prisma.SupplyTypeColorsWhereUniqueInput
+  include?: Prisma.ColorInclude<ExtArgs> | null
+  where?: Prisma.ColorWhereInput
+  orderBy?: Prisma.ColorOrderByWithRelationInput | Prisma.ColorOrderByWithRelationInput[]
+  cursor?: Prisma.ColorWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SupplyTypeColorsScalarFieldEnum | Prisma.SupplyTypeColorsScalarFieldEnum[]
+  distinct?: Prisma.ColorScalarFieldEnum | Prisma.ColorScalarFieldEnum[]
 }
 
 /**
@@ -1820,23 +1896,23 @@ export type SupplyType$colorsArgs<ExtArgs extends runtime.Types.Extensions.Inter
  */
 export type SupplyType$sizesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the SupplyTypeSizes
+   * Select specific fields to fetch from the Size
    */
-  select?: Prisma.SupplyTypeSizesSelect<ExtArgs> | null
+  select?: Prisma.SizeSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the SupplyTypeSizes
+   * Omit specific fields from the Size
    */
-  omit?: Prisma.SupplyTypeSizesOmit<ExtArgs> | null
+  omit?: Prisma.SizeOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SupplyTypeSizesInclude<ExtArgs> | null
-  where?: Prisma.SupplyTypeSizesWhereInput
-  orderBy?: Prisma.SupplyTypeSizesOrderByWithRelationInput | Prisma.SupplyTypeSizesOrderByWithRelationInput[]
-  cursor?: Prisma.SupplyTypeSizesWhereUniqueInput
+  include?: Prisma.SizeInclude<ExtArgs> | null
+  where?: Prisma.SizeWhereInput
+  orderBy?: Prisma.SizeOrderByWithRelationInput | Prisma.SizeOrderByWithRelationInput[]
+  cursor?: Prisma.SizeWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SupplyTypeSizesScalarFieldEnum | Prisma.SupplyTypeSizesScalarFieldEnum[]
+  distinct?: Prisma.SizeScalarFieldEnum | Prisma.SizeScalarFieldEnum[]
 }
 
 /**

@@ -14,8 +14,6 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 
     if (!url) throw new Error("Missing data url configuration");
 
-    console.log("url", url);
-
     super({
       adapter: new PrismaPg({
         connectionString: url,

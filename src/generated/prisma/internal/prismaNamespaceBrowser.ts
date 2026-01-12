@@ -66,9 +66,7 @@ export const ModelName = {
   SupplyType: 'SupplyType',
   QuantityUnit: 'QuantityUnit',
   Color: 'Color',
-  Size: 'Size',
-  SupplyTypeColors: 'SupplyTypeColors',
-  SupplyTypeSizes: 'SupplyTypeSizes'
+  Size: 'Size'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -113,6 +111,8 @@ export const CurrencyTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   shortName: 'shortName',
+  symbol: 'symbol',
+  decimals: 'decimals',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -286,22 +286,6 @@ export const SizeScalarFieldEnum = {
 } as const
 
 export type SizeScalarFieldEnum = (typeof SizeScalarFieldEnum)[keyof typeof SizeScalarFieldEnum]
-
-
-export const SupplyTypeColorsScalarFieldEnum = {
-  supplyTypeId: 'supplyTypeId',
-  colorId: 'colorId'
-} as const
-
-export type SupplyTypeColorsScalarFieldEnum = (typeof SupplyTypeColorsScalarFieldEnum)[keyof typeof SupplyTypeColorsScalarFieldEnum]
-
-
-export const SupplyTypeSizesScalarFieldEnum = {
-  supplyTypeId: 'supplyTypeId',
-  sizeId: 'sizeId'
-} as const
-
-export type SupplyTypeSizesScalarFieldEnum = (typeof SupplyTypeSizesScalarFieldEnum)[keyof typeof SupplyTypeSizesScalarFieldEnum]
 
 
 export const SortOrder = {

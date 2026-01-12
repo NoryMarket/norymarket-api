@@ -9,8 +9,8 @@ model SupplyType {
     quantityUnitId String
     quantityUnit QuantityUnit @relation(fields: [quantityUnitId], references: [id])
 
-    colors SupplyTypeColors[]
-    sizes SupplyTypeSizes[]
+    colors Color[]
+    sizes Size[]
     recipes BuildOfMaterialsRecipe[]
     supplies Supply[]
 
@@ -41,7 +41,7 @@ model Color {
     updatedAt DateTime @updatedAt()
     deletedAt DateTime?
 
-    supplyTypes SupplyTypeColors[]
+    supplyTypes SupplyType[]
     supplies Supply[]
     orders OrderProducts[]
 
@@ -57,30 +57,9 @@ model Size {
     updatedAt DateTime @updatedAt()
     deletedAt DateTime?
 
-    supplyTypes SupplyTypeSizes[]
+    supplyTypes SupplyType[]
     supplies Supply[]
     orders OrderProducts[]
 
     @@schema("supplyType")
-}
-
-model SupplyTypeColors {
-    supplyTypeId String
-    supplyType SupplyType @relation(fields: [supplyTypeId], references: [id])    
-    colorId String
-    color Color @relation(fields: [colorId], references: [id])
-
-    @@id([colorId,supplyTypeId])
-    @@schema("supplyType")
-}
-
-model SupplyTypeSizes {
-    supplyTypeId String
-    supplyType SupplyType @relation(fields: [supplyTypeId], references: [id])
-    sizeId String
-    size Size @relation(fields: [sizeId], references: [id])
-
-    @@id([sizeId,supplyTypeId])
-    @@schema("supplyType")
-    
 }

@@ -399,9 +399,7 @@ export const ModelName = {
   SupplyType: 'SupplyType',
   QuantityUnit: 'QuantityUnit',
   Color: 'Color',
-  Size: 'Size',
-  SupplyTypeColors: 'SupplyTypeColors',
-  SupplyTypeSizes: 'SupplyTypeSizes'
+  Size: 'Size'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -417,7 +415,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "buildOfMaterials" | "buildOfMaterialsRecipe" | "currencyType" | "currencyRate" | "sellableProduct" | "sellableProductAllowedCurrencies" | "order" | "orderProducts" | "productionRun" | "productionRunWaste" | "supply" | "supplyWaste" | "supplyType" | "quantityUnit" | "color" | "size" | "supplyTypeColors" | "supplyTypeSizes"
+    modelProps: "buildOfMaterials" | "buildOfMaterialsRecipe" | "currencyType" | "currencyRate" | "sellableProduct" | "sellableProductAllowedCurrencies" | "order" | "orderProducts" | "productionRun" | "productionRunWaste" | "supply" | "supplyWaste" | "supplyType" | "quantityUnit" | "color" | "size"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1605,154 +1603,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    SupplyTypeColors: {
-      payload: Prisma.$SupplyTypeColorsPayload<ExtArgs>
-      fields: Prisma.SupplyTypeColorsFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.SupplyTypeColorsFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.SupplyTypeColorsFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>
-        }
-        findFirst: {
-          args: Prisma.SupplyTypeColorsFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.SupplyTypeColorsFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>
-        }
-        findMany: {
-          args: Prisma.SupplyTypeColorsFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>[]
-        }
-        create: {
-          args: Prisma.SupplyTypeColorsCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>
-        }
-        createMany: {
-          args: Prisma.SupplyTypeColorsCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.SupplyTypeColorsCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>[]
-        }
-        delete: {
-          args: Prisma.SupplyTypeColorsDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>
-        }
-        update: {
-          args: Prisma.SupplyTypeColorsUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>
-        }
-        deleteMany: {
-          args: Prisma.SupplyTypeColorsDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.SupplyTypeColorsUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.SupplyTypeColorsUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>[]
-        }
-        upsert: {
-          args: Prisma.SupplyTypeColorsUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeColorsPayload>
-        }
-        aggregate: {
-          args: Prisma.SupplyTypeColorsAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSupplyTypeColors>
-        }
-        groupBy: {
-          args: Prisma.SupplyTypeColorsGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SupplyTypeColorsGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.SupplyTypeColorsCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SupplyTypeColorsCountAggregateOutputType> | number
-        }
-      }
-    }
-    SupplyTypeSizes: {
-      payload: Prisma.$SupplyTypeSizesPayload<ExtArgs>
-      fields: Prisma.SupplyTypeSizesFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.SupplyTypeSizesFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.SupplyTypeSizesFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>
-        }
-        findFirst: {
-          args: Prisma.SupplyTypeSizesFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.SupplyTypeSizesFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>
-        }
-        findMany: {
-          args: Prisma.SupplyTypeSizesFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>[]
-        }
-        create: {
-          args: Prisma.SupplyTypeSizesCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>
-        }
-        createMany: {
-          args: Prisma.SupplyTypeSizesCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.SupplyTypeSizesCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>[]
-        }
-        delete: {
-          args: Prisma.SupplyTypeSizesDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>
-        }
-        update: {
-          args: Prisma.SupplyTypeSizesUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>
-        }
-        deleteMany: {
-          args: Prisma.SupplyTypeSizesDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.SupplyTypeSizesUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.SupplyTypeSizesUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>[]
-        }
-        upsert: {
-          args: Prisma.SupplyTypeSizesUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$SupplyTypeSizesPayload>
-        }
-        aggregate: {
-          args: Prisma.SupplyTypeSizesAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateSupplyTypeSizes>
-        }
-        groupBy: {
-          args: Prisma.SupplyTypeSizesGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SupplyTypeSizesGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.SupplyTypeSizesCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.SupplyTypeSizesCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -1818,6 +1668,8 @@ export const CurrencyTypeScalarFieldEnum = {
   id: 'id',
   name: 'name',
   shortName: 'shortName',
+  symbol: 'symbol',
+  decimals: 'decimals',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -1991,22 +1843,6 @@ export const SizeScalarFieldEnum = {
 } as const
 
 export type SizeScalarFieldEnum = (typeof SizeScalarFieldEnum)[keyof typeof SizeScalarFieldEnum]
-
-
-export const SupplyTypeColorsScalarFieldEnum = {
-  supplyTypeId: 'supplyTypeId',
-  colorId: 'colorId'
-} as const
-
-export type SupplyTypeColorsScalarFieldEnum = (typeof SupplyTypeColorsScalarFieldEnum)[keyof typeof SupplyTypeColorsScalarFieldEnum]
-
-
-export const SupplyTypeSizesScalarFieldEnum = {
-  supplyTypeId: 'supplyTypeId',
-  sizeId: 'sizeId'
-} as const
-
-export type SupplyTypeSizesScalarFieldEnum = (typeof SupplyTypeSizesScalarFieldEnum)[keyof typeof SupplyTypeSizesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2205,8 +2041,6 @@ export type GlobalOmitConfig = {
   quantityUnit?: Prisma.QuantityUnitOmit
   color?: Prisma.ColorOmit
   size?: Prisma.SizeOmit
-  supplyTypeColors?: Prisma.SupplyTypeColorsOmit
-  supplyTypeSizes?: Prisma.SupplyTypeSizesOmit
 }
 
 /* Types for Logging */

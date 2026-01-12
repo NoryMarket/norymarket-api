@@ -190,7 +190,7 @@ export type ColorWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Color"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Color"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Color"> | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsListRelationFilter
+  supplyTypes?: Prisma.SupplyTypeListRelationFilter
   supplies?: Prisma.SupplyListRelationFilter
   orders?: Prisma.OrderProductsListRelationFilter
 }
@@ -202,7 +202,7 @@ export type ColorOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  supplyTypes?: Prisma.SupplyTypeColorsOrderByRelationAggregateInput
+  supplyTypes?: Prisma.SupplyTypeOrderByRelationAggregateInput
   supplies?: Prisma.SupplyOrderByRelationAggregateInput
   orders?: Prisma.OrderProductsOrderByRelationAggregateInput
 }
@@ -217,7 +217,7 @@ export type ColorWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Color"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Color"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Color"> | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsListRelationFilter
+  supplyTypes?: Prisma.SupplyTypeListRelationFilter
   supplies?: Prisma.SupplyListRelationFilter
   orders?: Prisma.OrderProductsListRelationFilter
 }, "id">
@@ -253,7 +253,7 @@ export type ColorCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsCreateNestedManyWithoutColorInput
+  supplyTypes?: Prisma.SupplyTypeCreateNestedManyWithoutColorsInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeColorInput
   orders?: Prisma.OrderProductsCreateNestedManyWithoutSellableProductColorInput
 }
@@ -265,7 +265,7 @@ export type ColorUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUncheckedCreateNestedManyWithoutColorInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedCreateNestedManyWithoutColorsInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeColorInput
   orders?: Prisma.OrderProductsUncheckedCreateNestedManyWithoutSellableProductColorInput
 }
@@ -277,7 +277,7 @@ export type ColorUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUpdateManyWithoutColorNestedInput
+  supplyTypes?: Prisma.SupplyTypeUpdateManyWithoutColorsNestedInput
   supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeColorNestedInput
   orders?: Prisma.OrderProductsUpdateManyWithoutSellableProductColorNestedInput
 }
@@ -289,7 +289,7 @@ export type ColorUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUncheckedUpdateManyWithoutColorNestedInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedUpdateManyWithoutColorsNestedInput
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeColorNestedInput
   orders?: Prisma.OrderProductsUncheckedUpdateManyWithoutSellableProductColorNestedInput
 }
@@ -324,6 +324,16 @@ export type ColorUncheckedUpdateManyInput = {
 export type ColorScalarRelationFilter = {
   is?: Prisma.ColorWhereInput
   isNot?: Prisma.ColorWhereInput
+}
+
+export type ColorListRelationFilter = {
+  every?: Prisma.ColorWhereInput
+  some?: Prisma.ColorWhereInput
+  none?: Prisma.ColorWhereInput
+}
+
+export type ColorOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type ColorCountOrderByAggregateInput = {
@@ -381,18 +391,42 @@ export type ColorUpdateOneRequiredWithoutSuppliesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ColorUpdateToOneWithWhereWithoutSuppliesInput, Prisma.ColorUpdateWithoutSuppliesInput>, Prisma.ColorUncheckedUpdateWithoutSuppliesInput>
 }
 
-export type ColorCreateNestedOneWithoutSupplyTypesInput = {
-  create?: Prisma.XOR<Prisma.ColorCreateWithoutSupplyTypesInput, Prisma.ColorUncheckedCreateWithoutSupplyTypesInput>
-  connectOrCreate?: Prisma.ColorCreateOrConnectWithoutSupplyTypesInput
-  connect?: Prisma.ColorWhereUniqueInput
+export type ColorCreateNestedManyWithoutSupplyTypesInput = {
+  create?: Prisma.XOR<Prisma.ColorCreateWithoutSupplyTypesInput, Prisma.ColorUncheckedCreateWithoutSupplyTypesInput> | Prisma.ColorCreateWithoutSupplyTypesInput[] | Prisma.ColorUncheckedCreateWithoutSupplyTypesInput[]
+  connectOrCreate?: Prisma.ColorCreateOrConnectWithoutSupplyTypesInput | Prisma.ColorCreateOrConnectWithoutSupplyTypesInput[]
+  connect?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
 }
 
-export type ColorUpdateOneRequiredWithoutSupplyTypesNestedInput = {
-  create?: Prisma.XOR<Prisma.ColorCreateWithoutSupplyTypesInput, Prisma.ColorUncheckedCreateWithoutSupplyTypesInput>
-  connectOrCreate?: Prisma.ColorCreateOrConnectWithoutSupplyTypesInput
-  upsert?: Prisma.ColorUpsertWithoutSupplyTypesInput
-  connect?: Prisma.ColorWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ColorUpdateToOneWithWhereWithoutSupplyTypesInput, Prisma.ColorUpdateWithoutSupplyTypesInput>, Prisma.ColorUncheckedUpdateWithoutSupplyTypesInput>
+export type ColorUncheckedCreateNestedManyWithoutSupplyTypesInput = {
+  create?: Prisma.XOR<Prisma.ColorCreateWithoutSupplyTypesInput, Prisma.ColorUncheckedCreateWithoutSupplyTypesInput> | Prisma.ColorCreateWithoutSupplyTypesInput[] | Prisma.ColorUncheckedCreateWithoutSupplyTypesInput[]
+  connectOrCreate?: Prisma.ColorCreateOrConnectWithoutSupplyTypesInput | Prisma.ColorCreateOrConnectWithoutSupplyTypesInput[]
+  connect?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+}
+
+export type ColorUpdateManyWithoutSupplyTypesNestedInput = {
+  create?: Prisma.XOR<Prisma.ColorCreateWithoutSupplyTypesInput, Prisma.ColorUncheckedCreateWithoutSupplyTypesInput> | Prisma.ColorCreateWithoutSupplyTypesInput[] | Prisma.ColorUncheckedCreateWithoutSupplyTypesInput[]
+  connectOrCreate?: Prisma.ColorCreateOrConnectWithoutSupplyTypesInput | Prisma.ColorCreateOrConnectWithoutSupplyTypesInput[]
+  upsert?: Prisma.ColorUpsertWithWhereUniqueWithoutSupplyTypesInput | Prisma.ColorUpsertWithWhereUniqueWithoutSupplyTypesInput[]
+  set?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+  disconnect?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+  delete?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+  connect?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+  update?: Prisma.ColorUpdateWithWhereUniqueWithoutSupplyTypesInput | Prisma.ColorUpdateWithWhereUniqueWithoutSupplyTypesInput[]
+  updateMany?: Prisma.ColorUpdateManyWithWhereWithoutSupplyTypesInput | Prisma.ColorUpdateManyWithWhereWithoutSupplyTypesInput[]
+  deleteMany?: Prisma.ColorScalarWhereInput | Prisma.ColorScalarWhereInput[]
+}
+
+export type ColorUncheckedUpdateManyWithoutSupplyTypesNestedInput = {
+  create?: Prisma.XOR<Prisma.ColorCreateWithoutSupplyTypesInput, Prisma.ColorUncheckedCreateWithoutSupplyTypesInput> | Prisma.ColorCreateWithoutSupplyTypesInput[] | Prisma.ColorUncheckedCreateWithoutSupplyTypesInput[]
+  connectOrCreate?: Prisma.ColorCreateOrConnectWithoutSupplyTypesInput | Prisma.ColorCreateOrConnectWithoutSupplyTypesInput[]
+  upsert?: Prisma.ColorUpsertWithWhereUniqueWithoutSupplyTypesInput | Prisma.ColorUpsertWithWhereUniqueWithoutSupplyTypesInput[]
+  set?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+  disconnect?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+  delete?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+  connect?: Prisma.ColorWhereUniqueInput | Prisma.ColorWhereUniqueInput[]
+  update?: Prisma.ColorUpdateWithWhereUniqueWithoutSupplyTypesInput | Prisma.ColorUpdateWithWhereUniqueWithoutSupplyTypesInput[]
+  updateMany?: Prisma.ColorUpdateManyWithWhereWithoutSupplyTypesInput | Prisma.ColorUpdateManyWithWhereWithoutSupplyTypesInput[]
+  deleteMany?: Prisma.ColorScalarWhereInput | Prisma.ColorScalarWhereInput[]
 }
 
 export type ColorCreateWithoutOrdersInput = {
@@ -402,7 +436,7 @@ export type ColorCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsCreateNestedManyWithoutColorInput
+  supplyTypes?: Prisma.SupplyTypeCreateNestedManyWithoutColorsInput
   supplies?: Prisma.SupplyCreateNestedManyWithoutSupplyTypeColorInput
 }
 
@@ -413,7 +447,7 @@ export type ColorUncheckedCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUncheckedCreateNestedManyWithoutColorInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedCreateNestedManyWithoutColorsInput
   supplies?: Prisma.SupplyUncheckedCreateNestedManyWithoutSupplyTypeColorInput
 }
 
@@ -440,7 +474,7 @@ export type ColorUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUpdateManyWithoutColorNestedInput
+  supplyTypes?: Prisma.SupplyTypeUpdateManyWithoutColorsNestedInput
   supplies?: Prisma.SupplyUpdateManyWithoutSupplyTypeColorNestedInput
 }
 
@@ -451,7 +485,7 @@ export type ColorUncheckedUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUncheckedUpdateManyWithoutColorNestedInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedUpdateManyWithoutColorsNestedInput
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeColorNestedInput
 }
 
@@ -462,7 +496,7 @@ export type ColorCreateWithoutSuppliesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsCreateNestedManyWithoutColorInput
+  supplyTypes?: Prisma.SupplyTypeCreateNestedManyWithoutColorsInput
   orders?: Prisma.OrderProductsCreateNestedManyWithoutSellableProductColorInput
 }
 
@@ -473,7 +507,7 @@ export type ColorUncheckedCreateWithoutSuppliesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUncheckedCreateNestedManyWithoutColorInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedCreateNestedManyWithoutColorsInput
   orders?: Prisma.OrderProductsUncheckedCreateNestedManyWithoutSellableProductColorInput
 }
 
@@ -500,7 +534,7 @@ export type ColorUpdateWithoutSuppliesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUpdateManyWithoutColorNestedInput
+  supplyTypes?: Prisma.SupplyTypeUpdateManyWithoutColorsNestedInput
   orders?: Prisma.OrderProductsUpdateManyWithoutSellableProductColorNestedInput
 }
 
@@ -511,7 +545,7 @@ export type ColorUncheckedUpdateWithoutSuppliesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  supplyTypes?: Prisma.SupplyTypeColorsUncheckedUpdateManyWithoutColorNestedInput
+  supplyTypes?: Prisma.SupplyTypeUncheckedUpdateManyWithoutColorsNestedInput
   orders?: Prisma.OrderProductsUncheckedUpdateManyWithoutSellableProductColorNestedInput
 }
 
@@ -542,15 +576,32 @@ export type ColorCreateOrConnectWithoutSupplyTypesInput = {
   create: Prisma.XOR<Prisma.ColorCreateWithoutSupplyTypesInput, Prisma.ColorUncheckedCreateWithoutSupplyTypesInput>
 }
 
-export type ColorUpsertWithoutSupplyTypesInput = {
+export type ColorUpsertWithWhereUniqueWithoutSupplyTypesInput = {
+  where: Prisma.ColorWhereUniqueInput
   update: Prisma.XOR<Prisma.ColorUpdateWithoutSupplyTypesInput, Prisma.ColorUncheckedUpdateWithoutSupplyTypesInput>
   create: Prisma.XOR<Prisma.ColorCreateWithoutSupplyTypesInput, Prisma.ColorUncheckedCreateWithoutSupplyTypesInput>
-  where?: Prisma.ColorWhereInput
 }
 
-export type ColorUpdateToOneWithWhereWithoutSupplyTypesInput = {
-  where?: Prisma.ColorWhereInput
+export type ColorUpdateWithWhereUniqueWithoutSupplyTypesInput = {
+  where: Prisma.ColorWhereUniqueInput
   data: Prisma.XOR<Prisma.ColorUpdateWithoutSupplyTypesInput, Prisma.ColorUncheckedUpdateWithoutSupplyTypesInput>
+}
+
+export type ColorUpdateManyWithWhereWithoutSupplyTypesInput = {
+  where: Prisma.ColorScalarWhereInput
+  data: Prisma.XOR<Prisma.ColorUpdateManyMutationInput, Prisma.ColorUncheckedUpdateManyWithoutSupplyTypesInput>
+}
+
+export type ColorScalarWhereInput = {
+  AND?: Prisma.ColorScalarWhereInput | Prisma.ColorScalarWhereInput[]
+  OR?: Prisma.ColorScalarWhereInput[]
+  NOT?: Prisma.ColorScalarWhereInput | Prisma.ColorScalarWhereInput[]
+  id?: Prisma.StringFilter<"Color"> | string
+  name?: Prisma.StringFilter<"Color"> | string
+  color?: Prisma.StringFilter<"Color"> | string
+  createdAt?: Prisma.DateTimeFilter<"Color"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Color"> | Date | string
+  deletedAt?: Prisma.DateTimeNullableFilter<"Color"> | Date | string | null
 }
 
 export type ColorUpdateWithoutSupplyTypesInput = {
@@ -573,6 +624,15 @@ export type ColorUncheckedUpdateWithoutSupplyTypesInput = {
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   supplies?: Prisma.SupplyUncheckedUpdateManyWithoutSupplyTypeColorNestedInput
   orders?: Prisma.OrderProductsUncheckedUpdateManyWithoutSellableProductColorNestedInput
+}
+
+export type ColorUncheckedUpdateManyWithoutSupplyTypesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -606,7 +666,7 @@ export type ColorCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
  * ColorCountOutputType without action
  */
 export type ColorCountOutputTypeCountSupplyTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SupplyTypeColorsWhereInput
+  where?: Prisma.SupplyTypeWhereInput
 }
 
 /**
@@ -677,7 +737,7 @@ export type ColorIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $ColorPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Color"
   objects: {
-    supplyTypes: Prisma.$SupplyTypeColorsPayload<ExtArgs>[]
+    supplyTypes: Prisma.$SupplyTypePayload<ExtArgs>[]
     supplies: Prisma.$SupplyPayload<ExtArgs>[]
     orders: Prisma.$OrderProductsPayload<ExtArgs>[]
   }
@@ -1082,7 +1142,7 @@ readonly fields: ColorFieldRefs;
  */
 export interface Prisma__ColorClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  supplyTypes<T extends Prisma.Color$supplyTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Color$supplyTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyTypeColorsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  supplyTypes<T extends Prisma.Color$supplyTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Color$supplyTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   supplies<T extends Prisma.Color$suppliesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Color$suppliesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SupplyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.Color$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Color$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderProductsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1512,23 +1572,23 @@ export type ColorDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
  */
 export type Color$supplyTypesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the SupplyTypeColors
+   * Select specific fields to fetch from the SupplyType
    */
-  select?: Prisma.SupplyTypeColorsSelect<ExtArgs> | null
+  select?: Prisma.SupplyTypeSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the SupplyTypeColors
+   * Omit specific fields from the SupplyType
    */
-  omit?: Prisma.SupplyTypeColorsOmit<ExtArgs> | null
+  omit?: Prisma.SupplyTypeOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SupplyTypeColorsInclude<ExtArgs> | null
-  where?: Prisma.SupplyTypeColorsWhereInput
-  orderBy?: Prisma.SupplyTypeColorsOrderByWithRelationInput | Prisma.SupplyTypeColorsOrderByWithRelationInput[]
-  cursor?: Prisma.SupplyTypeColorsWhereUniqueInput
+  include?: Prisma.SupplyTypeInclude<ExtArgs> | null
+  where?: Prisma.SupplyTypeWhereInput
+  orderBy?: Prisma.SupplyTypeOrderByWithRelationInput | Prisma.SupplyTypeOrderByWithRelationInput[]
+  cursor?: Prisma.SupplyTypeWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.SupplyTypeColorsScalarFieldEnum | Prisma.SupplyTypeColorsScalarFieldEnum[]
+  distinct?: Prisma.SupplyTypeScalarFieldEnum | Prisma.SupplyTypeScalarFieldEnum[]
 }
 
 /**

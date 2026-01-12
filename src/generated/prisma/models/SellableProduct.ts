@@ -582,14 +582,6 @@ export type SellableProductUncheckedUpdateManyWithoutCurrencyRateNestedInput = {
   deleteMany?: Prisma.SellableProductScalarWhereInput | Prisma.SellableProductScalarWhereInput[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type SellableProductCreateNestedOneWithoutAllowedCurrenciesInput = {
   create?: Prisma.XOR<Prisma.SellableProductCreateWithoutAllowedCurrenciesInput, Prisma.SellableProductUncheckedCreateWithoutAllowedCurrenciesInput>
   connectOrCreate?: Prisma.SellableProductCreateOrConnectWithoutAllowedCurrenciesInput

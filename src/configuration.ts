@@ -13,7 +13,6 @@ export const configuration = () => {
       ? rawDatabaseUrl.replace(databasePasswordExpression, rawDatabasePassword)
       : rawDatabaseUrl;
 
-  console.log("databaseUrl", databaseUrl);
   return {
     supabase: {
       url: process.env["SUPABASE_URL"],

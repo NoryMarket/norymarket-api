@@ -117,13 +117,3 @@ export type Color = Prisma.ColorModel
  * 
  */
 export type Size = Prisma.SizeModel
-/**
- * Model SupplyTypeColors
- * 
- */
-export type SupplyTypeColors = Prisma.SupplyTypeColorsModel
-/**
- * Model SupplyTypeSizes
- * 
- */
-export type SupplyTypeSizes = Prisma.SupplyTypeSizesModel

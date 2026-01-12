@@ -16,11 +16,18 @@ import { CreateSizeDTO, SizeDTO, UpdateSizeDTO } from "./types/sizes";
 export class ConfigurationService {
   constructor(private prisma: PrismaService) {}
 
-  async createCurrencyType({ name, shortName }: CreateCurrencyTypeDTO) {
+  async createCurrencyType({
+    name,
+    shortName,
+    decimals,
+    symbol,
+  }: CreateCurrencyTypeDTO) {
     const data = await this.prisma.currencyType.create({
       data: {
         name,
         shortName,
+        decimals,
+        symbol,
       },
     });
 
