@@ -27,11 +27,21 @@ export class CurrencyExchangeDTO {
   @ApiProperty({ type: Date })
   createdAt: Date;
 
-  constructor({ id, factor, createdAt, currencyTypeId }: CurrencyRate) {
+  @ApiProperty({ type: Date })
+  updatedAt: Date;
+
+  constructor({
+    id,
+    factor,
+    createdAt,
+    currencyTypeId,
+    updatedAt,
+  }: CurrencyRate) {
     this.id = id;
     this.createdAt = createdAt;
     this.currencyTypeId = currencyTypeId;
     this.factor = factor;
+    this.updatedAt = updatedAt;
   }
 }
 
