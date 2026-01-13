@@ -67,9 +67,10 @@ export class ConfigurationController {
     return await this.configurationService.updateCurrencyType(id, data);
   }
 
-  @Delete("currencyType/:currencyTypeId")
-  async deleteCurrencyType(@Param("currencyTypeId", ParseUUIDPipe) id: string) {
-    return await this.configurationService.deleteCurrencyType(id);
+  @ApiOkResponse({ type: "string", isArray: true })
+  @Delete("currencyType")
+  async deleteCurrencyType(@Body() { ids }: MultiDeleteEntityDTO) {
+    return await this.configurationService.deleteCurrencyType(ids);
   }
 
   @ApiOkResponse({ type: CurrencyTypeDTO, isArray: true })

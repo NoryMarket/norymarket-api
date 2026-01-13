@@ -67,15 +67,19 @@ export class ConfigurationService {
     return updated;
   }
 
-  async deleteCurrencyType(id: string) {
-    const softDeleted = await this.prisma.currencyType.update({
-      where: { id },
+  async deleteCurrencyType(ids: string[]) {
+    const softDeleted = await this.prisma.currencyType.updateMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
       data: { deletedAt: new Date() },
     });
 
     if (!softDeleted) throw new Error("404");
 
-    return softDeleted?.id;
+    return ids;
   }
 
   async createCurrencyExchange({
