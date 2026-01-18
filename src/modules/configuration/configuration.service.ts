@@ -34,6 +34,15 @@ export class ConfigurationService {
     decimals,
     symbol,
   }: CreateCurrencyTypeDTO) {
+    const appConfig = await this.getAppConfig();
+
+    const defaultCurrencyId = appConfig["default-currency"];
+    const defaultCurrencyExchange = defaultCurrencyId
+      ? await this.getCurrencyExchanges([defaultCurrencyId])
+      : [];
+
+    const factor = defaultCurrencyExchange.at(0)?.factor ?? 1;
+
     const data = await this.prisma.currencyType.create({
       data: {
         name,
@@ -42,7 +51,7 @@ export class ConfigurationService {
         symbol,
         rates: {
           create: {
-            factor: 1,
+            factor,
             isReadonly: true,
           },
         },
@@ -108,6 +117,7 @@ export class ConfigurationService {
       data: {
         factor,
         currencyTypeId,
+        isReadonly: false,
       },
     });
 
