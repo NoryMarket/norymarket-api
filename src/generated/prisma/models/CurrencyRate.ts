@@ -38,6 +38,7 @@ export type CurrencyRateMinAggregateOutputType = {
   id: string | null
   currencyTypeId: string | null
   factor: number | null
+  isReadonly: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -47,6 +48,7 @@ export type CurrencyRateMaxAggregateOutputType = {
   id: string | null
   currencyTypeId: string | null
   factor: number | null
+  isReadonly: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -56,6 +58,7 @@ export type CurrencyRateCountAggregateOutputType = {
   id: number
   currencyTypeId: number
   factor: number
+  isReadonly: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -75,6 +78,7 @@ export type CurrencyRateMinAggregateInputType = {
   id?: true
   currencyTypeId?: true
   factor?: true
+  isReadonly?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -84,6 +88,7 @@ export type CurrencyRateMaxAggregateInputType = {
   id?: true
   currencyTypeId?: true
   factor?: true
+  isReadonly?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -93,6 +98,7 @@ export type CurrencyRateCountAggregateInputType = {
   id?: true
   currencyTypeId?: true
   factor?: true
+  isReadonly?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -189,6 +195,7 @@ export type CurrencyRateGroupByOutputType = {
   id: string
   currencyTypeId: string
   factor: number
+  isReadonly: boolean
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -221,6 +228,7 @@ export type CurrencyRateWhereInput = {
   id?: Prisma.StringFilter<"CurrencyRate"> | string
   currencyTypeId?: Prisma.StringFilter<"CurrencyRate"> | string
   factor?: Prisma.FloatFilter<"CurrencyRate"> | number
+  isReadonly?: Prisma.BoolFilter<"CurrencyRate"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CurrencyRate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CurrencyRate"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"CurrencyRate"> | Date | string | null
@@ -233,6 +241,7 @@ export type CurrencyRateOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   currencyTypeId?: Prisma.SortOrder
   factor?: Prisma.SortOrder
+  isReadonly?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -248,6 +257,7 @@ export type CurrencyRateWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CurrencyRateWhereInput | Prisma.CurrencyRateWhereInput[]
   currencyTypeId?: Prisma.StringFilter<"CurrencyRate"> | string
   factor?: Prisma.FloatFilter<"CurrencyRate"> | number
+  isReadonly?: Prisma.BoolFilter<"CurrencyRate"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CurrencyRate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CurrencyRate"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"CurrencyRate"> | Date | string | null
@@ -260,6 +270,7 @@ export type CurrencyRateOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   currencyTypeId?: Prisma.SortOrder
   factor?: Prisma.SortOrder
+  isReadonly?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -277,6 +288,7 @@ export type CurrencyRateScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"CurrencyRate"> | string
   currencyTypeId?: Prisma.StringWithAggregatesFilter<"CurrencyRate"> | string
   factor?: Prisma.FloatWithAggregatesFilter<"CurrencyRate"> | number
+  isReadonly?: Prisma.BoolWithAggregatesFilter<"CurrencyRate"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"CurrencyRate"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"CurrencyRate"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"CurrencyRate"> | Date | string | null
@@ -285,6 +297,7 @@ export type CurrencyRateScalarWhereWithAggregatesInput = {
 export type CurrencyRateCreateInput = {
   id?: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -297,6 +310,7 @@ export type CurrencyRateUncheckedCreateInput = {
   id?: string
   currencyTypeId: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -307,6 +321,7 @@ export type CurrencyRateUncheckedCreateInput = {
 export type CurrencyRateUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -319,6 +334,7 @@ export type CurrencyRateUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   currencyTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -330,6 +346,7 @@ export type CurrencyRateCreateManyInput = {
   id?: string
   currencyTypeId: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -338,6 +355,7 @@ export type CurrencyRateCreateManyInput = {
 export type CurrencyRateUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -347,6 +365,7 @@ export type CurrencyRateUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   currencyTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -366,6 +385,7 @@ export type CurrencyRateCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   currencyTypeId?: Prisma.SortOrder
   factor?: Prisma.SortOrder
+  isReadonly?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -379,6 +399,7 @@ export type CurrencyRateMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   currencyTypeId?: Prisma.SortOrder
   factor?: Prisma.SortOrder
+  isReadonly?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -388,6 +409,7 @@ export type CurrencyRateMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   currencyTypeId?: Prisma.SortOrder
   factor?: Prisma.SortOrder
+  isReadonly?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -444,6 +466,10 @@ export type CurrencyRateUncheckedUpdateManyWithoutCurrencyTypeNestedInput = {
   deleteMany?: Prisma.CurrencyRateScalarWhereInput | Prisma.CurrencyRateScalarWhereInput[]
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type CurrencyRateCreateNestedOneWithoutSellabeProductsInput = {
   create?: Prisma.XOR<Prisma.CurrencyRateCreateWithoutSellabeProductsInput, Prisma.CurrencyRateUncheckedCreateWithoutSellabeProductsInput>
   connectOrCreate?: Prisma.CurrencyRateCreateOrConnectWithoutSellabeProductsInput
@@ -475,6 +501,7 @@ export type CurrencyRateUpdateOneRequiredWithoutSuppliesNestedInput = {
 export type CurrencyRateCreateWithoutCurrencyTypeInput = {
   id?: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -485,6 +512,7 @@ export type CurrencyRateCreateWithoutCurrencyTypeInput = {
 export type CurrencyRateUncheckedCreateWithoutCurrencyTypeInput = {
   id?: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -525,6 +553,7 @@ export type CurrencyRateScalarWhereInput = {
   id?: Prisma.StringFilter<"CurrencyRate"> | string
   currencyTypeId?: Prisma.StringFilter<"CurrencyRate"> | string
   factor?: Prisma.FloatFilter<"CurrencyRate"> | number
+  isReadonly?: Prisma.BoolFilter<"CurrencyRate"> | boolean
   createdAt?: Prisma.DateTimeFilter<"CurrencyRate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"CurrencyRate"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"CurrencyRate"> | Date | string | null
@@ -533,6 +562,7 @@ export type CurrencyRateScalarWhereInput = {
 export type CurrencyRateCreateWithoutSellabeProductsInput = {
   id?: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -544,6 +574,7 @@ export type CurrencyRateUncheckedCreateWithoutSellabeProductsInput = {
   id?: string
   currencyTypeId: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -569,6 +600,7 @@ export type CurrencyRateUpdateToOneWithWhereWithoutSellabeProductsInput = {
 export type CurrencyRateUpdateWithoutSellabeProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -580,6 +612,7 @@ export type CurrencyRateUncheckedUpdateWithoutSellabeProductsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   currencyTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -589,6 +622,7 @@ export type CurrencyRateUncheckedUpdateWithoutSellabeProductsInput = {
 export type CurrencyRateCreateWithoutSuppliesInput = {
   id?: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -600,6 +634,7 @@ export type CurrencyRateUncheckedCreateWithoutSuppliesInput = {
   id?: string
   currencyTypeId: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -625,6 +660,7 @@ export type CurrencyRateUpdateToOneWithWhereWithoutSuppliesInput = {
 export type CurrencyRateUpdateWithoutSuppliesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -636,6 +672,7 @@ export type CurrencyRateUncheckedUpdateWithoutSuppliesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   currencyTypeId?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -645,6 +682,7 @@ export type CurrencyRateUncheckedUpdateWithoutSuppliesInput = {
 export type CurrencyRateCreateManyCurrencyTypeInput = {
   id?: string
   factor: number
+  isReadonly?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -653,6 +691,7 @@ export type CurrencyRateCreateManyCurrencyTypeInput = {
 export type CurrencyRateUpdateWithoutCurrencyTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -663,6 +702,7 @@ export type CurrencyRateUpdateWithoutCurrencyTypeInput = {
 export type CurrencyRateUncheckedUpdateWithoutCurrencyTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -673,6 +713,7 @@ export type CurrencyRateUncheckedUpdateWithoutCurrencyTypeInput = {
 export type CurrencyRateUncheckedUpdateManyWithoutCurrencyTypeInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   factor?: Prisma.FloatFieldUpdateOperationsInput | number
+  isReadonly?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -722,6 +763,7 @@ export type CurrencyRateSelect<ExtArgs extends runtime.Types.Extensions.Internal
   id?: boolean
   currencyTypeId?: boolean
   factor?: boolean
+  isReadonly?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -735,6 +777,7 @@ export type CurrencyRateSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   currencyTypeId?: boolean
   factor?: boolean
+  isReadonly?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -745,6 +788,7 @@ export type CurrencyRateSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   id?: boolean
   currencyTypeId?: boolean
   factor?: boolean
+  isReadonly?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -755,12 +799,13 @@ export type CurrencyRateSelectScalar = {
   id?: boolean
   currencyTypeId?: boolean
   factor?: boolean
+  isReadonly?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type CurrencyRateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "currencyTypeId" | "factor" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["currencyRate"]>
+export type CurrencyRateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "currencyTypeId" | "factor" | "isReadonly" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["currencyRate"]>
 export type CurrencyRateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   currencyType?: boolean | Prisma.CurrencyTypeDefaultArgs<ExtArgs>
   supplies?: boolean | Prisma.CurrencyRate$suppliesArgs<ExtArgs>
@@ -785,6 +830,7 @@ export type $CurrencyRatePayload<ExtArgs extends runtime.Types.Extensions.Intern
     id: string
     currencyTypeId: string
     factor: number
+    isReadonly: boolean
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -1217,6 +1263,7 @@ export interface CurrencyRateFieldRefs {
   readonly id: Prisma.FieldRef<"CurrencyRate", 'String'>
   readonly currencyTypeId: Prisma.FieldRef<"CurrencyRate", 'String'>
   readonly factor: Prisma.FieldRef<"CurrencyRate", 'Float'>
+  readonly isReadonly: Prisma.FieldRef<"CurrencyRate", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"CurrencyRate", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"CurrencyRate", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"CurrencyRate", 'DateTime'>

@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsInt, IsString, Length, Min } from "class-validator";
 import { CurrencyType } from "src/generated/prisma/client";
+import { CurrencyExchangeDTO } from "./currencyExchange";
 
 export class CreateCurrencyTypeDTO {
   @ApiProperty({ type: "string" })
@@ -61,19 +62,20 @@ export class CurrencyTypeDTO {
   @ApiProperty({ type: Date })
   updatedAt: Date;
 
-  constructor({
-    id,
-    name,
-    shortName,
-    updatedAt,
-    decimals,
-    symbol,
-  }: CurrencyType) {
+  @ApiProperty({ type: CurrencyExchangeDTO, isArray: true })
+  exchanges?: CurrencyExchangeDTO[];
+
+  constructor(
+    { id, name, shortName, updatedAt, decimals, symbol }: CurrencyType,
+    currencyExchanges?: CurrencyExchangeDTO[],
+  ) {
     this.id = id;
     this.name = name;
     this.shortName = shortName;
     this.updatedAt = updatedAt;
     this.decimals = decimals;
     this.symbol = symbol;
+
+    this.exchanges = currencyExchanges;
   }
 }

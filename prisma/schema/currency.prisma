@@ -22,6 +22,7 @@ model CurrencyRate {
     currencyTypeId String
     currencyType CurrencyType @relation(fields: [currencyTypeId], references: [id])
     factor Float
+    isReadonly Boolean @default(false)
     
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt()

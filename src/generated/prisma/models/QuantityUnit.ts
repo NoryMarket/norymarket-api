@@ -397,10 +397,6 @@ export type QuantityUnitUpdateOneRequiredWithoutSupplyTypesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuantityUnitUpdateToOneWithWhereWithoutSupplyTypesInput, Prisma.QuantityUnitUpdateWithoutSupplyTypesInput>, Prisma.QuantityUnitUncheckedUpdateWithoutSupplyTypesInput>
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type QuantityUnitCreateWithoutSupplyTypesInput = {
   id?: string
   name: string

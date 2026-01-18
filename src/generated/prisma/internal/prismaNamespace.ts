@@ -1766,6 +1766,7 @@ export const CurrencyRateScalarFieldEnum = {
   id: 'id',
   currencyTypeId: 'currencyTypeId',
   factor: 'factor',
+  isReadonly: 'isReadonly',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'

@@ -16,7 +16,7 @@ import {
   UpdateCurrencyTypeDTO,
 } from "./types/currencyType";
 
-import { ApiOkResponse } from "@nestjs/swagger";
+import { ApiConflictResponse, ApiOkResponse } from "@nestjs/swagger";
 import {
   CreateCurrencyExchangeDTO,
   CurrencyExchangeDTO,
@@ -68,6 +68,7 @@ export class ConfigurationController {
   }
 
   @ApiOkResponse({ type: "string", isArray: true })
+  @ApiConflictResponse({ type: CurrencyExchangeDTO, isArray: true })
   @Delete("currencyType")
   async deleteCurrencyType(@Body() { ids }: MultiDeleteEntityDTO) {
     return await this.configurationService.deleteCurrencyType(ids);

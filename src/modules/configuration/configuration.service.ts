@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { ConflictException, Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
 import {
   CreateCurrencyTypeDTO,
@@ -40,10 +40,22 @@ export class ConfigurationService {
         shortName,
         decimals,
         symbol,
+        rates: {
+          create: {
+            factor: 1,
+            isReadonly: true,
+          },
+        },
+      },
+      include: {
+        rates: true,
       },
     });
 
-    return new CurrencyTypeDTO(data);
+    return new CurrencyTypeDTO(
+      data,
+      data.rates?.map((rate) => new CurrencyExchangeDTO(rate)),
+    );
   }
 
   async getCurrencyTypes() {
@@ -68,6 +80,12 @@ export class ConfigurationService {
   }
 
   async deleteCurrencyType(ids: string[]) {
+    const currencyExchanges = await this.getCurrencyExchanges(ids);
+
+    if (currencyExchanges.length > 0) {
+      throw new ConflictException(currencyExchanges);
+    }
+
     const softDeleted = await this.prisma.currencyType.updateMany({
       where: {
         id: {
@@ -96,10 +114,17 @@ export class ConfigurationService {
     return new CurrencyExchangeDTO(data);
   }
 
-  async getCurrencyExchanges() {
+  async getCurrencyExchanges(currencyTypesIds?: string[]) {
     const data = await this.prisma.currencyRate.findMany({
       distinct: "currencyTypeId",
-      where: { deletedAt: null },
+      where: {
+        deletedAt: null,
+        currencyTypeId: currencyTypesIds
+          ? {
+              in: currencyTypesIds,
+            }
+          : undefined,
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -128,6 +153,7 @@ export class ConfigurationService {
         id: {
           in: ids,
         },
+        isReadonly: false,
       },
       data: { deletedAt: new Date() },
     });

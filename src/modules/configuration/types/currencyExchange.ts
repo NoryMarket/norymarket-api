@@ -30,18 +30,23 @@ export class CurrencyExchangeDTO {
   @ApiProperty({ type: Date })
   updatedAt: Date;
 
+  @ApiProperty({ type: "boolean" })
+  isReadonly: boolean;
+
   constructor({
     id,
     factor,
     createdAt,
     currencyTypeId,
     updatedAt,
+    isReadonly,
   }: CurrencyRate) {
     this.id = id;
     this.createdAt = createdAt;
     this.currencyTypeId = currencyTypeId;
     this.factor = factor;
     this.updatedAt = updatedAt;
+    this.isReadonly = isReadonly;
   }
 }
 
